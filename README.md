@@ -1,7 +1,7 @@
 # Governed Research Workspace Framework
 
-Status: local-only `v0.1.0-framework-candidate`; not yet published, tagged, or
-released.
+Status: public `v0.1.0-framework-candidate`; cross-platform CI has passed.
+It is not yet tagged or released.
 
 ## Purpose
 
@@ -95,7 +95,8 @@ python scripts/bootstrap_workspace.py \
 
 After reviewing the emitted plan, confirmation requires the exact returned
 `plan_id` and a nonempty `approval_reference`. The candidate requires Python
-3.11 or later; cross-platform support is not claimed until CI completes.
+3.11 or later. Its Windows, Ubuntu, and macOS CI matrix passed on Python 3.11
+and 3.14; the candidate remains unreleased pending final review.
 
 A future concrete system may state framework support only after it validates
 the declared profile and compatibility version.

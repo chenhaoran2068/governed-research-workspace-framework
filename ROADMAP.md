@@ -2,7 +2,7 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
-## Local-Only v0.1.0 Framework Candidate
+## Public v0.1.0 Framework Candidate
 
 Current candidate goals:
 
@@ -29,11 +29,11 @@ orientation material. It:
 - create no system registration, project, data, credential, account setting,
   access right, research claim, or compliance fact;
 - record a receipt of the created skeleton and declared framework version; and
-- be tested on Windows, Ubuntu, and macOS before any release claim; and
+- passed testing on Windows, Ubuntu, and macOS with Python 3.11 and 3.14; and
 - use Python 3.11+ standard library only, accept `standalone` and
   `framework_integrated`, and refuse `private_lab_extended`.
 
-It remains unreleased until the candidate is independently reviewed and its
+It remains unreleased until the candidate is independently reviewed. Its
 Windows, Ubuntu, and macOS GitHub Actions matrix has passed.
 
 ## Future Review Gates

@@ -1,7 +1,7 @@
 # Controlled Workspace Bootstrap Design v1
 
-Status: accepted design; implementation candidate is present and awaits
-cross-platform CI plus release review.
+Status: accepted design; implementation candidate is present, cross-platform
+CI has passed, and release review remains pending.
 
 ## Purpose
 
