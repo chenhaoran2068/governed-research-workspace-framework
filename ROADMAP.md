@@ -2,24 +2,24 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
-## Public v0.1.0 Framework Candidate
+## v0.1.0 (released 2026-07-15)
 
-Current candidate goals:
+This release:
 
 - define generic root ownership and multi-system contracts;
 - provide JSON Schema definitions for workspace, system, and project-binding
   manifests;
 - provide standalone and framework-integrated synthetic profiles;
 - provide blank templates and a synthetic multi-system example; and
-- validate that the candidate remains path-independent and public-safe.
+- validates that the package remains path-independent and public-safe.
 
-The candidate does not yet provide a released installer, live registry,
-runtime adapter, agent implementation, or production compatibility claim.
+It does not provide a system installer, live registry, runtime adapter, agent
+implementation, or universal production compatibility claim.
 
-## Workspace Bootstrap Implementation Candidate
+## Workspace Bootstrap
 
-The candidate now includes an explicitly invoked `bootstrap_workspace` helper.
-Its accepted contract is recorded in
+This release includes an explicitly invoked `bootstrap_workspace` helper. Its
+accepted contract is recorded in
 `docs/controlled_workspace_bootstrap_design_v1.md`. It creates an empty
 profile-appropriate workspace skeleton, a blank workspace manifest, and
 orientation material. It:
@@ -33,19 +33,19 @@ orientation material. It:
 - use Python 3.11+ standard library only, accept `standalone` and
   `framework_integrated`, and refuse `private_lab_extended`.
 
-It remains unreleased until the candidate is independently reviewed. Its
-Windows, Ubuntu, and macOS GitHub Actions matrix has passed.
+Its Windows, Ubuntu, and macOS GitHub Actions matrix passed with Python 3.11
+and 3.14.
 
 ## Future Review Gates
 
-1. Review framework terms, ownership boundaries, and public/private rules.
-2. Validate schemas, templates, examples, and boundary checks on supported
-   operating systems.
-3. Independently validate at least one concrete system in standalone and
-   framework-integrated profiles.
-4. Decide repository visibility, release version, maintainer process, and
-   compatibility policy.
-5. Only then create a public release.
+1. Maintain the ownership, public/private, schema, template, and boundary
+   contracts through reviewed releases.
+2. Keep supported operating-system validation current as runtime baselines
+   change.
+3. Require every concrete system to validate its own declared profiles and
+   exact compatible framework version before it claims stable compatibility.
+4. Add an explicit, independently reviewed system-installation method only if
+   real user need and safety evidence justify it.
 
 ## Not Automatic Future Scope
 

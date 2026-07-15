@@ -1,6 +1,6 @@
 # Reference Workspace Tree
 
-Status: candidate reference layout. This document describes stable locations
+Status: `v0.1.0` reference layout. This document describes stable locations
 and ownership boundaries; it is not an installer and does not make any
 directory mandatory merely by naming it.
 

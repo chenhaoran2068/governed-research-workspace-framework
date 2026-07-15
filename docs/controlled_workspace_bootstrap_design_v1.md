@@ -1,11 +1,11 @@
 # Controlled Workspace Bootstrap Design v1
 
-Status: accepted design; implementation candidate is present, cross-platform
-CI has passed, and release review remains pending.
+Status: accepted design; implementation is released in framework `v0.1.0` and
+passed cross-platform CI.
 
 ## Purpose
 
-`bootstrap_workspace` will create one empty generic workspace framework after
+`bootstrap_workspace` creates one empty generic workspace framework after
 an exact human-reviewed preview. It creates a framework root, not a research
 project and not a concrete system installation.
 
@@ -16,7 +16,7 @@ mentioning a research task must never invoke it automatically.
 
 - minimum runtime: Python 3.11;
 - implementation: Python standard library only;
-- planned path: `scripts/bootstrap_workspace.py`;
+- implementation path: `scripts/bootstrap_workspace.py`;
 - supported release platforms: Windows, Ubuntu, and macOS, but only after the
   corresponding CI matrix has passed; and
 - no network, credentials, account access, dependency installation, system
@@ -68,7 +68,7 @@ arguments, a simultaneous preview/confirmation request, and
 `private_lab_extended`. The public helper cannot infer an organization's
 private controls or services.
 
-Candidate preview:
+Bootstrap preview:
 
 ```text
 python scripts/bootstrap_workspace.py \

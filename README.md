@@ -1,7 +1,7 @@
 # Governed Research Workspace Framework
 
-Status: public `v0.1.0-framework-candidate`; cross-platform CI has passed.
-It is not yet tagged or released.
+Status: public `v0.1.0` release. The Windows, Ubuntu, and macOS CI matrix
+passed on Python 3.11 and 3.14.
 
 ## Purpose
 
@@ -72,19 +72,19 @@ examples/   Synthetic multi-system workspace example
 tests/      Contract and public-boundary checks
 ```
 
-## Current Candidate Scope
+## Release Scope
 
-This candidate provides framework contracts, examples, and one explicitly
-invoked controlled empty-workspace bootstrap helper. It does not claim an
-agent-runtime integration, system registry service, or full interoperability
-with any concrete research system.
+This release provides framework contracts, examples, and one explicitly
+invoked controlled empty-workspace bootstrap helper. It does not provide an
+agent-runtime integration, system registry service, or universal
+interoperability claim for every concrete research system.
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval
 reference. It cannot install a system, create a project, import data, or grant
 access. See the [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md).
 
-Candidate preview:
+Bootstrap preview:
 
 ```text
 python scripts/bootstrap_workspace.py \
@@ -94,12 +94,15 @@ python scripts/bootstrap_workspace.py \
 ```
 
 After reviewing the emitted plan, confirmation requires the exact returned
-`plan_id` and a nonempty `approval_reference`. The candidate requires Python
-3.11 or later. Its Windows, Ubuntu, and macOS CI matrix passed on Python 3.11
-and 3.14; the candidate remains unreleased pending final review.
+`plan_id` and a nonempty `approval_reference`. The helper requires Python 3.11
+or later and passed the Windows, Ubuntu, and macOS CI matrix on Python 3.11 and
+3.14.
 
-A future concrete system may state framework support only after it validates
-the declared profile and compatibility version.
+A concrete system may state release compatibility only after it validates the
+declared profile and exact framework version. The separate
+`governed-research-workflow` candidate completed pre-release synthetic
+integration validation; it must rerun against this `v0.1.0` tag before its own
+stable release.
 
 ## License
 
