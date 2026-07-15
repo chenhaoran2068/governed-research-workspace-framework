@@ -1,6 +1,7 @@
 # Controlled Workspace Bootstrap Design v1
 
-Status: accepted design; implementation has not started.
+Status: accepted design; implementation candidate is present and awaits
+cross-platform CI plus release review.
 
 ## Purpose
 
@@ -66,6 +67,19 @@ The parser must disable abbreviated long options. It must reject unknown
 arguments, a simultaneous preview/confirmation request, and
 `private_lab_extended`. The public helper cannot infer an organization's
 private controls or services.
+
+Candidate preview:
+
+```text
+python scripts/bootstrap_workspace.py \
+  --parent <existing-parent-directory> \
+  --workspace-id <lowercase-ascii-id> \
+  --profile framework_integrated
+```
+
+After reviewing the emitted plan, confirmation repeats those inputs with
+`--confirm-create`, the exact `--plan-id`, and a nonempty
+`--approval-reference`.
 
 ## Profile Output
 

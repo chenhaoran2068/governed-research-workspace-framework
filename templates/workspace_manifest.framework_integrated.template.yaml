@@ -1,0 +1,19 @@
+# Generated empty framework-integrated workspace manifest.
+manifest_schema_version: 1
+framework_version: {{FRAMEWORK_VERSION}}
+workspace_id: {{WORKSPACE_ID}}
+workspace_profile: framework_integrated
+roots:
+  systems: Systems
+  skills: Skills
+  shared: Shared
+  knowledge: Knowledge
+  methods: Methods
+  instances: Instances
+  papers: Papers
+  data_raw: Data_Raw
+  github: Github
+  ops: Ops
+  archive: Archive
+registered_systems: []
+shared_services: []

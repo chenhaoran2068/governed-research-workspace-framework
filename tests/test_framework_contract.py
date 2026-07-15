@@ -31,6 +31,10 @@ class FrameworkContractTests(unittest.TestCase):
             "schemas/system_manifest.schema.json",
             "schemas/project_system_binding.schema.json",
             "templates/workspace_manifest.template.yaml",
+            "templates/workspace_manifest.standalone.template.yaml",
+            "templates/workspace_manifest.framework_integrated.template.yaml",
+            "templates/workspace_bootstrap_readme.template.md",
+            "scripts/bootstrap_workspace.py",
             "templates/system_manifest.template.yaml",
             "templates/project_system_binding.template.yaml",
             "examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml",
@@ -85,10 +89,10 @@ class FrameworkContractTests(unittest.TestCase):
         ))
 
     def test_templates_and_examples_have_no_private_workspace_markers(self):
-        checked_roots = [ROOT / "profiles", ROOT / "templates", ROOT / "examples"]
+        checked_roots = [ROOT / "profiles", ROOT / "templates", ROOT / "examples", ROOT / "scripts"]
         for checked_root in checked_roots:
             for path in checked_root.rglob("*"):
-                if not path.is_file():
+                if not path.is_file() or path.suffix not in {".md", ".yaml", ".yml", ".json", ".py"}:
                     continue
                 content = path.read_text(encoding="utf-8")
                 for marker in PRIVATE_MARKERS:

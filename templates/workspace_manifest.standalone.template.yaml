@@ -1,0 +1,10 @@
+# Generated empty standalone workspace manifest.
+manifest_schema_version: 1
+framework_version: {{FRAMEWORK_VERSION}}
+workspace_id: {{WORKSPACE_ID}}
+workspace_profile: standalone
+roots:
+  systems: Systems
+  instances: Instances
+registered_systems: []
+shared_services: []

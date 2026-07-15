@@ -16,13 +16,13 @@ Current candidate goals:
 The candidate does not yet provide a released installer, live registry,
 runtime adapter, agent implementation, or production compatibility claim.
 
-## Planned Workspace Bootstrap Candidate
+## Workspace Bootstrap Implementation Candidate
 
-A future candidate may add an explicitly invoked `bootstrap_workspace` helper.
+The candidate now includes an explicitly invoked `bootstrap_workspace` helper.
 Its accepted contract is recorded in
-`docs/controlled_workspace_bootstrap_design_v1.md`. It would create an empty
+`docs/controlled_workspace_bootstrap_design_v1.md`. It creates an empty
 profile-appropriate workspace skeleton, a blank workspace manifest, and
-orientation material. It must:
+orientation material. It:
 
 - show a no-write plan and require matching human confirmation before writing;
 - refuse an unsafe or nonempty target rather than merge with existing content;
@@ -33,7 +33,8 @@ orientation material. It must:
 - use Python 3.11+ standard library only, accept `standalone` and
   `framework_integrated`, and refuse `private_lab_extended`.
 
-This is a planned controlled capability, not current package behavior.
+It remains unreleased until the candidate is independently reviewed and its
+Windows, Ubuntu, and macOS GitHub Actions matrix has passed.
 
 ## Future Review Gates
 

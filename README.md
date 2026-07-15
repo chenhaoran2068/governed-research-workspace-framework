@@ -67,15 +67,35 @@ docs/       Human-readable framework contracts
 schemas/    Versioned JSON Schema contracts
 profiles/   Complete synthetic profile examples
 templates/  Blank manifest templates
+scripts/    Explicitly invoked controlled helpers
 examples/   Synthetic multi-system workspace example
 tests/      Contract and public-boundary checks
 ```
 
 ## Current Candidate Scope
 
-This candidate provides framework contracts and examples only. It does not yet
-claim a released installer, agent-runtime integration, system registry service,
-or full interoperability with any concrete research system.
+This candidate provides framework contracts, examples, and one explicitly
+invoked controlled empty-workspace bootstrap helper. It does not claim an
+agent-runtime integration, system registry service, or full interoperability
+with any concrete research system.
+
+The bootstrap helper is no-write by default. It creates a framework root only
+after a reviewed preview, an exact plan ID, and an accountable approval
+reference. It cannot install a system, create a project, import data, or grant
+access. See the [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md).
+
+Candidate preview:
+
+```text
+python scripts/bootstrap_workspace.py \
+  --parent <existing-parent-directory> \
+  --workspace-id <lowercase-ascii-id> \
+  --profile framework_integrated
+```
+
+After reviewing the emitted plan, confirmation requires the exact returned
+`plan_id` and a nonempty `approval_reference`. The candidate requires Python
+3.11 or later; cross-platform support is not claimed until CI completes.
 
 A future concrete system may state framework support only after it validates
 the declared profile and compatibility version.
