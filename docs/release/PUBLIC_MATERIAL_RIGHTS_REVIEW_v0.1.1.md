@@ -39,10 +39,10 @@ the GitHub-generated source archives.
 
 ## Retrospective Scan Result
 
-For the six commits reachable from the released main history at review time,
-the selected GitHub-token, cloud-key, private-key, assignment-style secret,
-and known private-path patterns returned zero matches. The released tracked
-tree has no Git LFS objects or Git submodules. Local dangling Git objects were
+For the seven commits reachable from the v0.1.1 candidate at review time, the
+selected GitHub-token, cloud-key, private-key, assignment-style secret, and
+known private-path patterns returned zero matches. The released tracked tree
+has no Git LFS objects or Git submodules. Local dangling Git objects were
 older generic candidate commits and are not reachable from the published tag;
 they are not part of the public release tree.
 

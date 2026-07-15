@@ -39,6 +39,9 @@ Evidence: ROADMAP.md, README.md, release notes, versioning guidance, and
 bootstrap metadata state that v0.1.1 changes release governance and tool
 metadata only.
 
+Candidate documentation audit completed at
+10c979e15ee1abddeba4286954b2823e2bb23716.
+
 Next action: review the final candidate diff before R11-G6.
 
 ### R11-G2: Public Material And Rights Boundary
@@ -49,6 +52,10 @@ required in R11-G6.
 Evidence: PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.1.1.md records classes, scan result,
 exceptions, and limits.
 
+The current-tree and seven-commit reachable-history pattern scans reported zero
+credential and known-private-path matches at
+10c979e15ee1abddeba4286954b2823e2bb23716.
+
 ### R11-G3: Manual Lifecycle Contract
 
 Status: candidate documentation prepared; final clean-install and rollback
@@ -56,6 +63,13 @@ test required before R11-G6.
 
 Evidence: INSTALL_UPDATE_ROLLBACK.md separates source checkout from a created
 workspace and prohibits automatic installation, migration, or overwrite.
+
+An isolated lifecycle test cloned candidate
+10c979e15ee1abddeba4286954b2823e2bb23716, ran 19 tests successfully, created
+an empty workspace only after preview and confirmation, verified receipt
+tool_version 0.1.1 and framework_version 0.1.0, rolled back to released
+v0.1.0 and ran 18 tests successfully, then restored the candidate and reran
+all 19 tests successfully.
 
 ### R11-G4: Behavioral And Compatibility Evidence
 
@@ -66,6 +80,10 @@ with Python 3.11 and 3.14. Existing local regression tests pass. Candidate
 tests additionally assert tool_version 0.1.1 while framework_version remains
 0.1.0.
 
+Candidate GitHub Actions run 29397040167 completed successfully on commit
+10c979e15ee1abddeba4286954b2823e2bb23716 for Windows, Ubuntu, and macOS with
+Python 3.11 and 3.14.
+
 ### R11-G5: Release Integrity And Security Review
 
 Status: candidate policy prepared; final clean-tree, history, and accessible
@@ -74,6 +92,11 @@ hosted-alert check required.
 Evidence: RELEASE_INTEGRITY_POLICY_v1.md records pinned Actions, test-only
 dependency ranges, scanning limits, exact tag policy, and immutable-release
 deferral.
+
+GitHub alert APIs were checked with maintainer credentials during candidate
+review. Dependabot returned 403, code scanning returned 404, and secret
+scanning was unavailable to the current credential; therefore no claim is made
+that hosted scanning is enabled or clear.
 
 ### R11-G6: Human Release Decision
 
