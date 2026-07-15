@@ -1,0 +1,14 @@
+# A system manifest describes one bounded system package.
+manifest_schema_version: 1
+system_id: <system-id>
+system_version: <version>
+system_role: <bounded-system-role>
+entry_point: <relative-entry-point>
+supported_profiles:
+  - standalone
+required_dependencies: []
+optional_shared_services: []
+framework_compatibility:
+  supported_framework_versions: <for-example-^0.1>
+project_ownership_behavior: <primary_system|contributing_system|no_project_ownership>
+data_access_boundary: <explicit-data-boundary>

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/project_system_binding.schema.json",
+  "title": "Project System Binding",
+  "type": "object",
+  "required": ["binding_schema_version", "project_id", "primary_system"],
+  "properties": {
+    "binding_schema_version": {"type": "integer", "const": 1},
+    "project_id": {"type": "string", "minLength": 1},
+    "primary_system": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "contributing_systems": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

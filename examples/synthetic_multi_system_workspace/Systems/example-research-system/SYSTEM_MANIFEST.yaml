@@ -1,0 +1,16 @@
+manifest_schema_version: 1
+system_id: example-research-system
+system_version: 0.1.0
+system_role: governed-research-orchestration
+entry_point: SKILL.md
+supported_profiles:
+  - standalone
+  - framework_integrated
+required_dependencies: []
+optional_shared_services:
+  - reusable-skills
+  - source-backed-knowledge
+framework_compatibility:
+  supported_framework_versions: ^0.1
+project_ownership_behavior: primary_system
+data_access_boundary: no-data-access-is-granted-by-this-manifest

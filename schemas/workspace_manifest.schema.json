@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/workspace_manifest.schema.json",
+  "title": "Governed Research Workspace Manifest",
+  "type": "object",
+  "required": ["manifest_schema_version", "framework_version", "workspace_id", "workspace_profile", "roots", "registered_systems"],
+  "properties": {
+    "manifest_schema_version": {"type": "integer", "const": 1},
+    "framework_version": {"type": "string", "minLength": 1},
+    "workspace_id": {"type": "string", "minLength": 1},
+    "workspace_profile": {"type": "string", "enum": ["standalone", "framework_integrated", "private_lab_extended"]},
+    "roots": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/]).+"}
+    },
+    "registered_systems": {
+      "type": "array",
+      "items": {"$ref": "system_manifest.schema.json#/$defs/registeredSystem"}
+    },
+    "shared_services": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

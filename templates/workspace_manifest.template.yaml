@@ -1,0 +1,10 @@
+# Replace angle-bracket placeholders. Keep all paths workspace-relative.
+manifest_schema_version: 1
+framework_version: <framework-version>
+workspace_id: <workspace-id>
+workspace_profile: <standalone|framework_integrated|private_lab_extended>
+roots:
+  systems: Systems
+  instances: Instances
+registered_systems: []
+shared_services: []

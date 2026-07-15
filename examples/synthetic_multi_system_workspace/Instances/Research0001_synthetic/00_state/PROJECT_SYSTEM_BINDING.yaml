@@ -1,0 +1,5 @@
+binding_schema_version: 1
+project_id: Research0001_synthetic
+primary_system: example-research-system
+contributing_systems:
+  - example-method-system

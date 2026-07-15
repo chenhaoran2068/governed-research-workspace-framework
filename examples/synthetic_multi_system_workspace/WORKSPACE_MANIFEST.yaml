@@ -1,0 +1,21 @@
+manifest_schema_version: 1
+framework_version: 0.1.0
+workspace_id: synthetic-multi-system-workspace
+workspace_profile: framework_integrated
+roots:
+  systems: Systems
+  skills: Skills
+  shared: Shared
+  knowledge: Knowledge
+  methods: Methods
+  instances: Instances
+registered_systems:
+  - system_id: example-research-system
+    path: Systems/example-research-system
+    system_version: 0.1.0
+  - system_id: example-method-system
+    path: Systems/example-method-system
+    system_version: 0.1.0
+shared_services:
+  - reusable-skills
+  - source-backed-knowledge

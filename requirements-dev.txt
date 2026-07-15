@@ -1,0 +1,3 @@
+# Test-only dependencies. The framework has no runtime Python dependency.
+PyYAML>=6.0.2,<7
+jsonschema>=4.23,<5
