@@ -1,9 +1,8 @@
 # Manual Framework Installation, Update, And Rollback
 
-Status: candidate operating contract for the future public v0.1.1 release.
-The framework is a source package and controlled workspace-bootstrap tool; it
-is not a Codex skill installer, a concrete research system, or a project
-migration utility.
+Status: operating contract for the public v0.1.1 release. The framework is a
+source package and controlled workspace-bootstrap tool; it is not a Codex
+skill installer, a concrete research system, or a project migration utility.
 
 ## Preconditions
 
@@ -17,7 +16,7 @@ migration utility.
 
 ## Obtain And Verify A Release
 
-Clone an exact future public tag into a source directory chosen by the user:
+Clone an exact public tag into a source directory chosen by the user:
 
 ~~~text
 git clone --branch v0.1.1 --depth 1 https://github.com/chenhaoran2068/governed-research-workspace-framework.git <framework-source-root>

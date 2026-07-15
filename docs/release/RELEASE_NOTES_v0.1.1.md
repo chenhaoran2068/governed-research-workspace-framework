@@ -1,7 +1,7 @@
-# Draft Release Notes: v0.1.1
+# Release Notes: v0.1.1
 
-Status: draft only. Do not publish until R11-G1 through R11-G6 pass for the
-exact intended main commit.
+Status: release-note source. The GitHub Release records the exact final main
+commit, validation links, human authorization, and post-release verification.
 
 ## Patch Scope
 

@@ -2,9 +2,9 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
-## Unreleased v0.1.1 Release-Governance Candidate
+## v0.1.1 (released 2026-07-15)
 
-This backward-compatible candidate:
+This backward-compatible patch:
 
 - corrects the public bootstrap receipt and preview tool version from the
   stale candidate label to `0.1.1`, while retaining framework contract version

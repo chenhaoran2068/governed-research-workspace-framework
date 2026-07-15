@@ -1,6 +1,6 @@
 # Governed Research Workspace Framework
 
-Status: public `v0.1.0` release. The Windows, Ubuntu, and macOS CI matrix
+Status: public `v0.1.1` release. The Windows, Ubuntu, and macOS CI matrix
 passed on Python 3.11 and 3.14.
 
 ## Purpose
@@ -78,6 +78,11 @@ This release provides framework contracts, examples, and one explicitly
 invoked controlled empty-workspace bootstrap helper. It does not provide an
 agent-runtime integration, system registry service, or universal
 interoperability claim for every concrete research system.
+
+v0.1.1 is a backward-compatible release-governance patch. It corrects the
+public bootstrap tool version recorded in previews and receipts, and adds
+manual lifecycle, material-rights, integrity, and release-evidence records.
+The framework contract version remains `0.1.0`.
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval
