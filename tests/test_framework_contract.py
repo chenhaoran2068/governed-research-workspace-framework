@@ -27,6 +27,12 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/controlled_workspace_bootstrap_design_v1.md",
             "docs/multi_system_contract.md",
             "docs/installation_profiles.md",
+            "docs/release/V0_1_1_RELEASE_GATE.md",
+            "docs/release/INSTALL_UPDATE_ROLLBACK.md",
+            "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.1.1.md",
+            "docs/release/RELEASE_INTEGRITY_POLICY_v1.md",
+            "docs/release/RELEASE_NOTES_v0.1.1.md",
+            "docs/release/V0_1_1_RELEASE_EVIDENCE.md",
             "schemas/workspace_manifest.schema.json",
             "schemas/system_manifest.schema.json",
             "schemas/project_system_binding.schema.json",
@@ -131,6 +137,16 @@ class FrameworkContractTests(unittest.TestCase):
             "Windows, Ubuntu, and macOS",
         ]:
             self.assertIn(requirement, design)
+
+    def test_release_governance_records_and_metadata_are_present(self):
+        script = (ROOT / "scripts/bootstrap_workspace.py").read_text(encoding="utf-8")
+        versioning = (ROOT / "docs/versioning_and_compatibility.md").read_text(encoding="utf-8")
+        evidence = (ROOT / "docs/release/V0_1_1_RELEASE_EVIDENCE.md").read_text(encoding="utf-8")
+        self.assertIn('TOOL_VERSION = "0.1.1"', script)
+        self.assertNotIn("0.1.0-framework-candidate", script)
+        self.assertIn("immutable public contract by policy", versioning)
+        self.assertIn("R11-G6", evidence)
+        self.assertIn("R11-G7", evidence)
 
 
 if __name__ == "__main__":

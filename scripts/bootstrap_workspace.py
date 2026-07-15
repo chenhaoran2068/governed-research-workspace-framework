@@ -23,7 +23,7 @@ from pathlib import Path
 from typing import Any
 
 
-TOOL_VERSION = "0.1.0-framework-candidate"
+TOOL_VERSION = "0.1.1"
 FRAMEWORK_VERSION = "0.1.0"
 PLAN_SCHEMA_VERSION = "1.0.0"
 RECEIPT_SCHEMA_VERSION = "1.0.0"

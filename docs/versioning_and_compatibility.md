@@ -18,5 +18,7 @@ supported framework-version range and has validated that profile.
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.
-A release tag is immutable. A correction is released as a new version rather
-than silently changing the published contract.
+A published version is an immutable public contract by policy. A correction is
+released as a new version rather than silently changing the published contract.
+Do not claim GitHub technical immutable-release protection unless that
+repository setting is actually enabled and recorded for the release.

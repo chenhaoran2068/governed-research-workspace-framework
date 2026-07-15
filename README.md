@@ -104,6 +104,12 @@ declared profile and exact framework version. The separate
 integration validation; it must rerun against this `v0.1.0` tag before its own
 stable release.
 
+The unreleased `v0.1.1-release-governance` candidate corrects bootstrap
+receipt tool-version metadata and adds manual lifecycle, material-rights, and
+release-integrity records. It introduces no new workspace profile, schema,
+system-installation capability, or research-execution authority. See
+[`docs/release/V0_1_1_RELEASE_GATE.md`](docs/release/V0_1_1_RELEASE_GATE.md).
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).

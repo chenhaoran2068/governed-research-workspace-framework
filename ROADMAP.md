@@ -2,6 +2,18 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
+## Unreleased v0.1.1 Release-Governance Candidate
+
+This backward-compatible candidate:
+
+- corrects the public bootstrap receipt and preview tool version from the
+  stale candidate label to `0.1.1`, while retaining framework contract version
+  `0.1.0`;
+- adds manual package installation, update, rollback, public-material/rights,
+  release-integrity, evidence, and release-notes records; and
+- adds no new workspace profile, schema, system installer, project creation
+  capability, data access, or research-execution authority.
+
 ## v0.1.0 (released 2026-07-15)
 
 This release:
