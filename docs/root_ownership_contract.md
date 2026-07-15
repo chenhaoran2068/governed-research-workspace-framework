@@ -32,3 +32,7 @@ grants and are not required to contain every possible system module.
 4. A public worktree may contain a reviewed derivative, but cannot replace the
    private source of truth.
 5. A root-role contract does not authorize access to material stored there.
+
+The [reference workspace tree](reference_workspace_tree.md) defines the
+cross-system second-level placement points. Concrete systems and projects own
+all deeper domain-specific layout.

@@ -9,6 +9,11 @@ roots:
   knowledge: Knowledge
   methods: Methods
   instances: Instances
+  papers: Papers
+  data_raw: Data_Raw
+  github: Github
+  ops: Ops
+  archive: Archive
 registered_systems:
   - system_id: example-research-system
     path: Systems/example-research-system

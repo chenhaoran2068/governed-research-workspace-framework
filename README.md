@@ -53,6 +53,7 @@ Project Instance
 See:
 
 - [root ownership contract](docs/root_ownership_contract.md)
+- [reference workspace tree](docs/reference_workspace_tree.md)
 - [multi-system contract](docs/multi_system_contract.md)
 - [installation profiles](docs/installation_profiles.md)
 - [public/private boundary](docs/public_private_boundary.md)

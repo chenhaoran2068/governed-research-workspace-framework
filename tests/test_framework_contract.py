@@ -23,6 +23,7 @@ class FrameworkContractTests(unittest.TestCase):
             "README.md",
             "PUBLIC_BOUNDARY.md",
             "docs/root_ownership_contract.md",
+            "docs/reference_workspace_tree.md",
             "docs/multi_system_contract.md",
             "docs/installation_profiles.md",
             "schemas/workspace_manifest.schema.json",
@@ -97,6 +98,20 @@ class FrameworkContractTests(unittest.TestCase):
         binding = path.read_text(encoding="utf-8")
         self.assertEqual(sum(line.startswith("primary_system:") for line in binding.splitlines()), 1)
         self.assertIn("contributing_systems:", binding)
+
+    def test_reference_tree_has_stable_cross_system_locations(self):
+        tree = (ROOT / "docs/reference_workspace_tree.md").read_text(encoding="utf-8")
+        for location in [
+            "WORKSPACE_MANIFEST.yaml",
+            "Systems/",
+            "<system-id>/",
+            "SYSTEM_MANIFEST.yaml",
+            "Instances/",
+            "00_state/",
+            "PROJECT_SYSTEM_BINDING.yaml",
+        ]:
+            self.assertIn(location, tree)
+        self.assertIn("does not define universal data, manuscript, method, or", tree)
 
 
 if __name__ == "__main__":
