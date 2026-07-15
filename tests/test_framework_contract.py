@@ -24,6 +24,7 @@ class FrameworkContractTests(unittest.TestCase):
             "PUBLIC_BOUNDARY.md",
             "docs/root_ownership_contract.md",
             "docs/reference_workspace_tree.md",
+            "docs/controlled_workspace_bootstrap_design_v1.md",
             "docs/multi_system_contract.md",
             "docs/installation_profiles.md",
             "schemas/workspace_manifest.schema.json",
@@ -112,6 +113,20 @@ class FrameworkContractTests(unittest.TestCase):
         ]:
             self.assertIn(location, tree)
         self.assertIn("does not define universal data, manuscript, method, or", tree)
+
+    def test_bootstrap_design_has_accepted_runtime_and_profile_boundaries(self):
+        design = (ROOT / "docs/controlled_workspace_bootstrap_design_v1.md").read_text(encoding="utf-8")
+        for requirement in [
+            "minimum runtime: Python 3.11",
+            "## Design Evidence",
+            "--profile <standalone|framework_integrated>",
+            "`private_lab_extended`",
+            "--confirm-create",
+            "--plan-id",
+            "--approval-reference",
+            "Windows, Ubuntu, and macOS",
+        ]:
+            self.assertIn(requirement, design)
 
 
 if __name__ == "__main__":

@@ -18,17 +18,20 @@ runtime adapter, agent implementation, or production compatibility claim.
 
 ## Planned Workspace Bootstrap Candidate
 
-A future candidate may add an explicitly invoked `bootstrap_workspace` helper
-only after the reference workspace tree and manifest semantics are accepted.
-It would create an empty full-profile workspace skeleton, a blank workspace
-manifest, and orientation material. It must:
+A future candidate may add an explicitly invoked `bootstrap_workspace` helper.
+Its accepted contract is recorded in
+`docs/controlled_workspace_bootstrap_design_v1.md`. It would create an empty
+profile-appropriate workspace skeleton, a blank workspace manifest, and
+orientation material. It must:
 
 - show a no-write plan and require matching human confirmation before writing;
 - refuse an unsafe or nonempty target rather than merge with existing content;
 - create no system registration, project, data, credential, account setting,
   access right, research claim, or compliance fact;
 - record a receipt of the created skeleton and declared framework version; and
-- be tested on Windows, Ubuntu, and macOS before any release claim.
+- be tested on Windows, Ubuntu, and macOS before any release claim; and
+- use Python 3.11+ standard library only, accept `standalone` and
+  `framework_integrated`, and refuse `private_lab_extended`.
 
 This is a planned controlled capability, not current package behavior.
 
