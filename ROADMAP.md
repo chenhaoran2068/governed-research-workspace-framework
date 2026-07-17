@@ -2,6 +2,13 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
+## v0.1.2 Current-State Correction
+
+This documentation-only correction will distinguish the published v0.1.1
+Release from its retained historical candidate records. It will not change the
+framework contract version, schemas, profiles, bootstrap behavior, root layout,
+or system-installation authority.
+
 ## v0.1.1 (released 2026-07-15)
 
 This backward-compatible patch:

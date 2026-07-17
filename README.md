@@ -1,7 +1,9 @@
 # Governed Research Workspace Framework
 
-Status: public `v0.1.1` release. The Windows, Ubuntu, and macOS CI matrix
-passed on Python 3.11 and 3.14.
+Status: public release package. Determine the current published version from
+the exact GitHub Release and its associated tag; do not infer it from a branch
+name or a retained candidate record. The Windows, Ubuntu, and macOS CI matrix
+passed on Python 3.11 and 3.14 for the latest verified release evidence.
 
 ## Purpose
 
@@ -103,17 +105,15 @@ After reviewing the emitted plan, confirmation requires the exact returned
 or later and passed the Windows, Ubuntu, and macOS CI matrix on Python 3.11 and
 3.14.
 
-A concrete system may state release compatibility only after it validates the
-declared profile and exact framework version. The separate
-`governed-research-workflow` candidate completed pre-release synthetic
-integration validation; it must rerun against this `v0.1.0` tag before its own
-stable release.
+A concrete system may state framework compatibility only after it validates the
+declared profile and exact framework version. This framework does not carry
+current release-status claims for separate system packages; consult the exact
+tag, GitHub Release, and compatibility evidence owned by that system.
 
-The unreleased `v0.1.1-release-governance` candidate corrects bootstrap
-receipt tool-version metadata and adds manual lifecycle, material-rights, and
-release-integrity records. It introduces no new workspace profile, schema,
-system-installation capability, or research-execution authority. See
-[`docs/release/V0_1_1_RELEASE_GATE.md`](docs/release/V0_1_1_RELEASE_GATE.md).
+The `docs/release/` records for v0.1.1 retain the historical candidate and
+pre-release evidence that led to the published v0.1.1 Release. They are not a
+current candidate, installation, or publication instruction for a later
+version.
 
 ## License
 

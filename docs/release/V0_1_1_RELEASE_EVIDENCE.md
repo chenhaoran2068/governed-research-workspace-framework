@@ -1,8 +1,12 @@
 # v0.1.1 Release Evidence Record
 
-Status: pre-release candidate evidence. This record cannot authorize merge,
-tagging, or publication and must be refreshed for the final intended main
-commit.
+Status: historical pre-release candidate evidence for the published v0.1.1
+Release. The final published tag and GitHub Release target
+`b0e32d7710b70299e633df1316b6924cd87b647b` and were published on
+`2026-07-15`. Candidate statuses, pending actions, and next-action wording
+below are preserved as the historical record captured before that Release;
+they must not be read as current instructions or authorization for a later
+version.
 
 ## Release Identity Under Review
 
@@ -33,7 +37,7 @@ commit.
 
 ### R11-G1: Patch Scope And Contract Freeze
 
-Status: candidate documentation prepared.
+Historical candidate-time status: candidate documentation prepared.
 
 Evidence: ROADMAP.md, README.md, release notes, versioning guidance, and
 bootstrap metadata state that v0.1.1 changes release governance and tool
@@ -46,7 +50,7 @@ Next action: review the final candidate diff before R11-G6.
 
 ### R11-G2: Public Material And Rights Boundary
 
-Status: candidate technical review prepared; human rights confirmation remains
+Historical candidate-time status: candidate technical review prepared; human rights confirmation remained
 required in R11-G6.
 
 Evidence: PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.1.1.md records classes, scan result,
@@ -58,8 +62,8 @@ credential and known-private-path matches at
 
 ### R11-G3: Manual Lifecycle Contract
 
-Status: candidate documentation prepared; final clean-install and rollback
-test required before R11-G6.
+Historical candidate-time status: candidate documentation prepared; final clean-install and rollback
+test were required before R11-G6.
 
 Evidence: INSTALL_UPDATE_ROLLBACK.md separates source checkout from a created
 workspace and prohibits automatic installation, migration, or overwrite.
@@ -73,7 +77,7 @@ all 19 tests successfully.
 
 ### R11-G4: Behavioral And Compatibility Evidence
 
-Status: candidate baseline available; final candidate CI required.
+Historical candidate-time status: candidate baseline available; final candidate CI required.
 
 Evidence: the v0.1.0 release matrix passed across Windows, Ubuntu, and macOS
 with Python 3.11 and 3.14. Existing local regression tests pass. Candidate
@@ -86,7 +90,7 @@ Python 3.11 and 3.14.
 
 ### R11-G5: Release Integrity And Security Review
 
-Status: candidate policy prepared; final clean-tree, history, and accessible
+Historical candidate-time status: candidate policy prepared; final clean-tree, history, and accessible
 hosted-alert check required.
 
 Evidence: RELEASE_INTEGRITY_POLICY_v1.md records pinned Actions, test-only
@@ -100,12 +104,12 @@ that hosted scanning is enabled or clear.
 
 ### R11-G6: Human Release Decision
 
-Status: pending. A named accountable maintainer must authorize the exact main
-commit, v0.1.1 annotated tag, and GitHub Release after R11-G1 through R11-G5
-are refreshed.
+Historical candidate-time status: pending. A named accountable maintainer had to authorize
+the exact main commit, v0.1.1 annotated tag, and GitHub Release after R11-G1
+through R11-G5 were refreshed.
 
 ### R11-G7: Post-Release Verification
 
-Status: not applicable until v0.1.1 exists. Verify exact tag-to-main commit
-resolution, Release/source-archive correspondence, and candidate-branch
-retention or retirement.
+Historical candidate-time status: not applicable until v0.1.1 existed. Verify exact
+tag-to-main commit resolution, Release/source-archive correspondence, and
+candidate-branch retention or retirement.

@@ -1,7 +1,9 @@
 # Release Integrity Policy
 
-Status: candidate policy for framework v0.1.1 and later. It defines a
-maintainer-controlled procedure and does not authorize AI publication.
+Status: active policy introduced with v0.1.1. It defines a
+maintainer-controlled procedure and does not authorize AI publication. Its
+v0.1.1-specific candidate records and decisions are historical; each later
+version requires its own current gate, evidence, and human release decision.
 
 ## Release Identity
 

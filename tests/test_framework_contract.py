@@ -33,6 +33,9 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/release/RELEASE_INTEGRITY_POLICY_v1.md",
             "docs/release/RELEASE_NOTES_v0.1.1.md",
             "docs/release/V0_1_1_RELEASE_EVIDENCE.md",
+            "docs/release/V0_1_2_RELEASE_GATE.md",
+            "docs/release/V0_1_2_RELEASE_EVIDENCE.md",
+            "docs/release/RELEASE_NOTES_v0.1.2.md",
             "schemas/workspace_manifest.schema.json",
             "schemas/system_manifest.schema.json",
             "schemas/project_system_binding.schema.json",
@@ -147,6 +150,18 @@ class FrameworkContractTests(unittest.TestCase):
         self.assertIn("immutable public contract by policy", versioning)
         self.assertIn("R11-G6", evidence)
         self.assertIn("R11-G7", evidence)
+
+    def test_current_release_identity_is_not_inferred_from_candidate_records(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        roadmap = (ROOT / "ROADMAP.md").read_text(encoding="utf-8")
+        gate = (ROOT / "docs/release/V0_1_1_RELEASE_GATE.md").read_text(encoding="utf-8")
+        evidence = (ROOT / "docs/release/V0_1_1_RELEASE_EVIDENCE.md").read_text(encoding="utf-8")
+
+        self.assertIn("Determine the current published version from", readme)
+        self.assertNotIn("The unreleased `v0.1.1-release-governance` candidate", readme)
+        self.assertIn("## v0.1.2 Current-State Correction", roadmap)
+        self.assertIn("Status: historical pre-release gate", gate)
+        self.assertIn("Status: historical pre-release candidate evidence", evidence)
 
 
 if __name__ == "__main__":

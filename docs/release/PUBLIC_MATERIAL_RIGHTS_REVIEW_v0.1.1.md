@@ -1,7 +1,9 @@
-# Public Material And Rights Review: v0.1.1 Candidate
+# Public Material And Rights Review: v0.1.1 Historical Candidate
 
-Status: candidate technical review. Final release authorization and contribution
-authority confirmation remain human maintainer responsibilities.
+Status: historical candidate technical review retained with the published
+v0.1.1 Release. It records a point-in-time review before the Release and does
+not establish material rights, authorization, or public scope for a later
+version.
 
 ## Scope And Method
 

@@ -1,7 +1,10 @@
 # v0.1.1 Release-Governance Gate
 
-Status: candidate gate for a backward-compatible patch release. It is not an
-authorization to merge, tag, or publish.
+Status: historical pre-release gate for the backward-compatible v0.1.1 patch.
+The published v0.1.1 tag and GitHub Release target
+`b0e32d7710b70299e633df1316b6924cd87b647b` and were published on
+`2026-07-15`. This retained gate describes the evidence required before that
+Release; it is not an instruction or authorization for a later version.
 
 ## Purpose
 
@@ -75,7 +78,7 @@ Verify that the public tag resolves to the intended tested main commit, the
 GitHub Release source archive and notes match that tag, and the candidate
 branch is retained or retired only by maintainer decision.
 
-## Candidate Records
+## Historical Candidate Records
 
 - INSTALL_UPDATE_ROLLBACK.md
 - PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.1.1.md
