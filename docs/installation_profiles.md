@@ -28,6 +28,12 @@ Requirements:
 - retain standalone-equivalent safety boundaries when an optional service is
   missing.
 
+For the v0.2.0 future full profile, the Framework creates its declared shared
+roots but no top-level `Papers/` root. A concrete System owns manuscript and
+submission structure. Existing workspaces that retain `roots.papers: Papers`
+remain their own unchanged workspace state; this profile does not migrate,
+remove, or inspect them.
+
 ## Private Lab Extended
 
 A private organization may add internal rules, source libraries, connectors,

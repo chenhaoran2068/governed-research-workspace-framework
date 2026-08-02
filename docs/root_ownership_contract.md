@@ -16,7 +16,6 @@ grants and are not required to contain every possible system module.
 | `Knowledge/` | Source-backed knowledge records, provenance, curation, and bounded retrieval surfaces. | General memory, unbounded source dumping, or project-specific interpretation. |
 | `Methods/` | Method workbenches, reusable pipelines, and method validation. | Lifecycle ownership for every project using a method. |
 | `Instances/` | Real project and program workspaces. | Cross-project authority or public release source. |
-| `Papers/` | Cross-project paper rules and retained special paper workspaces. | Default new-project execution space. |
 | `Data_Raw/` | Retained source-data holdings. | Analysis-ready project data, result authority, or public-release approval. |
 | `Github/` | Local worktrees for public repositories and release surfaces. | Private workspace authority. |
 | `Ops/` | Caches, temporary operations, and machine support. | Durable research knowledge or project authority. |
@@ -32,6 +31,9 @@ grants and are not required to contain every possible system module.
 4. A public worktree may contain a reviewed derivative, but cannot replace the
    private source of truth.
 5. A root-role contract does not authorize access to material stored there.
+6. A concrete System owns cross-project manuscript/submission guidance and a
+   project's manuscript/submission structure; the Framework does not reserve a
+   universal `Papers/` root for either purpose.
 
 The [reference workspace tree](reference_workspace_tree.md) defines the
 cross-system second-level placement points. Concrete systems and projects own

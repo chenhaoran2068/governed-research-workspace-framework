@@ -1,7 +1,7 @@
 # Controlled Workspace Bootstrap Design v1
 
-Status: accepted design; implementation is released in framework `v0.1.0` and
-passed cross-platform CI.
+Status: accepted design for the v0.2.0 contract. Determine any published
+release state from an exact tag and matching GitHub Release, not this document.
 
 ## Purpose
 
@@ -89,7 +89,7 @@ Create the complete empty reference root set:
 
 ```text
 Systems/  Skills/  Shared/  Knowledge/  Methods/  Instances/
-Papers/   Data_Raw/  Github/  Ops/  Archive/
+Data_Raw/  Github/  Ops/  Archive/
 ```
 
 Also create the root `WORKSPACE_MANIFEST.yaml`, orientation `README.md`, and

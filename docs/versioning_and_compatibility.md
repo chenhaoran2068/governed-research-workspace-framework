@@ -15,6 +15,15 @@ supported framework-version range and has validated that profile.
 - A system must stop and report an unsupported manifest or profile rather than
   attempting a blind migration.
 
+## v0.2.0 Future-Profile Compatibility
+
+Framework v0.2.0 removes `Papers/` only from new confirmed
+`framework_integrated` output. It does not change workspace-manifest schema
+version `1`, rewrite retained manifests that contain `roots.papers: Papers`,
+or inspect a physical `Papers/` directory. A concrete System may claim
+framework-integrated v0.2 compatibility only after it separately declares and
+validates that support.
+
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.

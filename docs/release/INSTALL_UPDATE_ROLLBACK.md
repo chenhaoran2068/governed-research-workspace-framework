@@ -1,6 +1,6 @@
 # Manual Framework Installation, Update, And Rollback
 
-Status: operating contract for the public v0.1.1 release. The framework is a
+Status: operating contract for reviewed public releases. The framework is a
 source package and controlled workspace-bootstrap tool; it is not a Codex
 skill installer, a concrete research system, or a project migration utility.
 
@@ -19,7 +19,7 @@ skill installer, a concrete research system, or a project migration utility.
 Clone an exact public tag into a source directory chosen by the user:
 
 ~~~text
-git clone --branch v0.1.1 --depth 1 https://github.com/chenhaoran2068/governed-research-workspace-framework.git <framework-source-root>
+git clone --branch <reviewed-release-tag> --depth 1 https://github.com/chenhaoran2068/governed-research-workspace-framework.git <framework-source-root>
 cd <framework-source-root>
 git describe --exact-match --tags HEAD
 git rev-parse HEAD
@@ -28,9 +28,10 @@ python --version
 python -m unittest discover -s tests -v
 ~~~
 
-Replace v0.1.1 only with an existing reviewed release tag. The tag command must
-print the selected tag, the status command must be empty, and tests must pass.
-Do not use main or another mutable branch name as a release identity.
+Replace `<reviewed-release-tag>` only with an existing reviewed release tag.
+The tag command must print the selected tag, the status command must be empty,
+and tests must pass. Do not use main or another mutable branch name as a
+release identity.
 
 ## Create A New Empty Workspace
 
@@ -63,15 +64,16 @@ git status --porcelain
 git describe --exact-match --tags HEAD
 git rev-parse HEAD
 git fetch --tags --prune
-git checkout --detach v0.1.2
+git checkout --detach <next-reviewed-tag>
 git describe --exact-match --tags HEAD
 python -m unittest discover -s tests -v
 ~~~
 
-v0.1.2 is illustrative. Use only a tag that exists and whose release notes
-support the intended update. Updating the framework source does not alter any
-existing workspace, workspace manifest, registered system, project binding,
-data, or project state.
+Use only a tag that exists and whose release notes support the intended update.
+Updating the framework source does not alter any existing workspace, workspace
+manifest, registered system, project binding, data, or project state. In
+particular, a v0.2.0 Framework update does not migrate, remove, inspect, or
+rewrite a retained `Papers/` directory or `roots.papers` manifest entry.
 
 ## Rollback
 
