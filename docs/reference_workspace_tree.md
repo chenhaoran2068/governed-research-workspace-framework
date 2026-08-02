@@ -1,6 +1,6 @@
 # Reference Workspace Tree
 
-Status: `v0.1.0` reference layout. This document describes stable locations
+Status: `v0.2.0` reference layout. This document describes stable locations
 and ownership boundaries; it is not an installer and does not make any
 directory mandatory merely by naming it.
 
@@ -42,8 +42,6 @@ system or project and may differ safely between systems.
       00_state/
         PROJECT_SYSTEM_BINDING.yaml               [required once the project is bound]
       ...primary-system-owned project content...
-  Papers/                                         [bootstrap default]
-    ...shared paper rules or retained special workspaces as configured...
   Data_Raw/                                       [bootstrap default]
     ...retained source holdings only when permitted...
   Github/                                         [bootstrap default]
@@ -88,6 +86,9 @@ A real project is placed under `Instances/<project-id>/`. Once it has a
 primary system, `00_state/PROJECT_SYSTEM_BINDING.yaml` records that system and
 any explicitly contributing systems. The primary system owns the remaining
 project lifecycle and project-specific subdirectories.
+
+The primary System, not this Framework, defines any project manuscript or
+submission area. The Framework does not create a top-level paper workspace.
 
 The framework does not authorize project execution, data access, analysis,
 compliance, release, or submission through this binding.

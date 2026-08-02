@@ -27,6 +27,7 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/controlled_workspace_bootstrap_design_v1.md",
             "docs/multi_system_contract.md",
             "docs/installation_profiles.md",
+            "docs/papers_root_retirement_compatibility_v1.md",
             "docs/release/V0_1_1_RELEASE_GATE.md",
             "docs/release/INSTALL_UPDATE_ROLLBACK.md",
             "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.1.1.md",
@@ -36,6 +37,10 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/release/V0_1_2_RELEASE_GATE.md",
             "docs/release/V0_1_2_RELEASE_EVIDENCE.md",
             "docs/release/RELEASE_NOTES_v0.1.2.md",
+            "docs/release/V0_2_0_RELEASE_GATE.md",
+            "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.2.0.md",
+            "docs/release/RELEASE_NOTES_v0.2.0.md",
+            "docs/release/V0_2_0_RELEASE_EVIDENCE.md",
             "schemas/workspace_manifest.schema.json",
             "schemas/system_manifest.schema.json",
             "schemas/project_system_binding.schema.json",
@@ -97,6 +102,19 @@ class FrameworkContractTests(unittest.TestCase):
             "examples/synthetic_multi_system_workspace/Instances/Research0001_synthetic/00_state/PROJECT_SYSTEM_BINDING.yaml"
         ))
 
+    def test_synthetic_registered_systems_cover_the_v0_2_workspace_example(self):
+        workspace = self._load_yaml("examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml")
+        self.assertEqual(workspace["framework_version"], "0.2.0")
+        for path in [
+            "examples/synthetic_multi_system_workspace/Systems/example-research-system/SYSTEM_MANIFEST.yaml",
+            "examples/synthetic_multi_system_workspace/Systems/example-method-system/SYSTEM_MANIFEST.yaml",
+        ]:
+            system = self._load_yaml(path)
+            self.assertEqual(
+                system["framework_compatibility"]["supported_framework_versions"],
+                ">=0.1.0 <0.3.0",
+            )
+
     def test_templates_and_examples_have_no_private_workspace_markers(self):
         checked_roots = [ROOT / "profiles", ROOT / "templates", ROOT / "examples", ROOT / "scripts"]
         for checked_root in checked_roots:
@@ -126,6 +144,9 @@ class FrameworkContractTests(unittest.TestCase):
         ]:
             self.assertIn(location, tree)
         self.assertIn("does not define universal data, manuscript, method, or", tree)
+        self.assertNotIn("Papers/                                         [bootstrap default]", tree)
+        roots = (ROOT / "docs" / "root_ownership_contract.md").read_text(encoding="utf-8")
+        self.assertNotIn("| `Papers/` |", roots)
 
     def test_bootstrap_design_has_accepted_runtime_and_profile_boundaries(self):
         design = (ROOT / "docs/controlled_workspace_bootstrap_design_v1.md").read_text(encoding="utf-8")
@@ -145,7 +166,8 @@ class FrameworkContractTests(unittest.TestCase):
         script = (ROOT / "scripts/bootstrap_workspace.py").read_text(encoding="utf-8")
         versioning = (ROOT / "docs/versioning_and_compatibility.md").read_text(encoding="utf-8")
         evidence = (ROOT / "docs/release/V0_1_1_RELEASE_EVIDENCE.md").read_text(encoding="utf-8")
-        self.assertIn('TOOL_VERSION = "0.1.1"', script)
+        self.assertIn('TOOL_VERSION = "0.2.0"', script)
+        self.assertIn('FRAMEWORK_VERSION = "0.2.0"', script)
         self.assertNotIn("0.1.0-framework-candidate", script)
         self.assertIn("immutable public contract by policy", versioning)
         self.assertIn("R11-G6", evidence)
@@ -159,7 +181,7 @@ class FrameworkContractTests(unittest.TestCase):
 
         self.assertIn("Determine the current published version from", readme)
         self.assertNotIn("The unreleased `v0.1.1-release-governance` candidate", readme)
-        self.assertIn("## v0.1.2 Current-State Correction", roadmap)
+        self.assertIn("## v0.2.0 Papers-Root Retirement", roadmap)
         self.assertIn("Status: historical pre-release gate", gate)
         self.assertIn("Status: historical pre-release candidate evidence", evidence)
 

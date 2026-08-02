@@ -2,12 +2,31 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
-## v0.1.2 Current-State Correction
+## v0.2.0 Papers-Root Retirement
 
-This documentation-only correction will distinguish the published v0.1.1
-Release from its retained historical candidate records. It will not change the
-framework contract version, schemas, profiles, bootstrap behavior, root layout,
-or system-installation authority.
+This path-contract release changes future confirmed
+`framework_integrated` bootstraps only:
+
+- removes `Papers/` from the Framework-owned bootstrap root set and generated
+  manifest;
+- leaves `standalone` unchanged;
+- leaves workspace-manifest schema version `1` unchanged, so retained legacy
+  `roots.papers: Papers` entries remain schema-valid without migration;
+- assigns project manuscript and submission structure to the owning concrete
+  System rather than a universal Framework root; and
+- updates the framework contract/bootstrap output and bootstrap tool identity
+  to `0.2.0`.
+
+It does not inspect, move, delete, or migrate an existing physical `Papers/`
+directory. A concrete System must separately declare and validate Framework
+v0.2 compatibility before it claims it.
+
+## v0.1.2 (released; historical current-state correction)
+
+This documentation-only correction distinguished the published v0.1.1 Release
+from retained historical candidate records. It did not change the framework
+contract version, schemas, profiles, bootstrap behavior, root layout, or
+system-installation authority.
 
 ## v0.1.1 (released 2026-07-15)
 

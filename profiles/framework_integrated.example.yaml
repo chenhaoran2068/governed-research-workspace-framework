@@ -1,6 +1,6 @@
 # A synthetic workspace with two explicitly registered systems.
 manifest_schema_version: 1
-framework_version: 0.1.0
+framework_version: 0.2.0
 workspace_id: synthetic-integrated-workspace
 workspace_profile: framework_integrated
 roots:
@@ -10,7 +10,6 @@ roots:
   knowledge: Knowledge
   methods: Methods
   instances: Instances
-  papers: Papers
   data_raw: Data_Raw
   github: Github
   ops: Ops

@@ -59,6 +59,7 @@ See:
 - [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md)
 - [multi-system contract](docs/multi_system_contract.md)
 - [installation profiles](docs/installation_profiles.md)
+- [Papers-root retirement compatibility](docs/papers_root_retirement_compatibility_v1.md)
 - [public/private boundary](docs/public_private_boundary.md)
 - [versioning and compatibility](docs/versioning_and_compatibility.md)
 
@@ -81,10 +82,16 @@ invoked controlled empty-workspace bootstrap helper. It does not provide an
 agent-runtime integration, system registry service, or universal
 interoperability claim for every concrete research system.
 
-v0.1.1 is a backward-compatible release-governance patch. It corrects the
-public bootstrap tool version recorded in previews and receipts, and adds
-manual lifecycle, material-rights, integrity, and release-evidence records.
-The framework contract version remains `0.1.0`.
+The historical v0.1.1 and v0.1.2 releases remain available for their exact
+tagged contracts and evidence. Their release records are historical facts, not
+instructions to infer the current release or modify an existing workspace.
+
+The v0.2.0 contract changes only future confirmed `framework_integrated`
+bootstraps: they omit the Framework-owned `Papers/` root and the corresponding
+`roots.papers` manifest entry. Project manuscript and submission structure is
+owned by the concrete installed System. Existing workspace manifests and
+physical `Papers/` directories are neither inspected nor migrated by this
+package. See the [compatibility statement](docs/papers_root_retirement_compatibility_v1.md).
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval
@@ -110,10 +117,9 @@ declared profile and exact framework version. This framework does not carry
 current release-status claims for separate system packages; consult the exact
 tag, GitHub Release, and compatibility evidence owned by that system.
 
-The `docs/release/` records for v0.1.1 retain the historical candidate and
-pre-release evidence that led to the published v0.1.1 Release. They are not a
-current candidate, installation, or publication instruction for a later
-version.
+The `docs/release/` records retain historical candidate, gate, and evidence
+facts for their respective tags. They are not a current candidate,
+installation, or publication instruction for a later version.
 
 ## License
 

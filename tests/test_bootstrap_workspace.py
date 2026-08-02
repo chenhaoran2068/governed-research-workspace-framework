@@ -84,14 +84,14 @@ class BootstrapWorkspaceTests(unittest.TestCase):
         payload = self.preview()
         self.assertEqual(list(self.parent.iterdir()), [])
         plan = payload["plan"]
-        self.assertEqual(plan["tool_version"], "0.1.1")
-        self.assertEqual(plan["framework_version"], "0.1.0")
+        self.assertEqual(plan["tool_version"], "0.2.0")
+        self.assertEqual(plan["framework_version"], "0.2.0")
         self.assertEqual(plan["workspace_id"], "example-workspace")
         self.assertEqual(plan["profile"], "framework_integrated")
         self.assertIn("parent_identity", plan)
         self.assertEqual(plan["planned_directories"], [
             "Systems", "Skills", "Shared", "Knowledge", "Methods", "Instances",
-            "Papers", "Data_Raw", "Github", "Ops", "Archive",
+            "Data_Raw", "Github", "Ops", "Archive",
         ])
         self.assertTrue(plan["scope"]["creates_empty_workspace_only"])
         self.assertFalse(plan["scope"]["installs_system"])
@@ -130,6 +130,8 @@ class BootstrapWorkspaceTests(unittest.TestCase):
                 manifest = yaml.safe_load((workspace / "WORKSPACE_MANIFEST.yaml").read_text(encoding="utf-8"))
                 validator.validate(manifest)
                 self.assertEqual(manifest["workspace_profile"], profile)
+                if profile == "framework_integrated":
+                    self.assertNotIn("papers", manifest["roots"])
                 self.assertEqual(manifest["registered_systems"], [])
                 self.assertEqual(manifest["shared_services"], [])
 
@@ -138,6 +140,14 @@ class BootstrapWorkspaceTests(unittest.TestCase):
                 self.assertTrue(receipt["receipt_file_not_self_hashed"])
                 for record in receipt["created_file_hashes"]:
                     self.assertEqual(module.sha256_file(workspace / record["relative_path"]), record["sha256"])
+
+    def test_legacy_papers_root_remains_schema_valid_without_migration(self) -> None:
+        legacy_manifest = yaml.safe_load(
+            (REPOSITORY_ROOT / "profiles" / "framework_integrated.example.yaml").read_text(encoding="utf-8")
+        )
+        legacy_manifest["framework_version"] = "0.1.0"
+        legacy_manifest["roots"]["papers"] = "Papers"
+        self.workspace_validator().validate(legacy_manifest)
 
     def test_confirmation_requires_matching_plan_and_approval_reference(self) -> None:
         self.preview()
