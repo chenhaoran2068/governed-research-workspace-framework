@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/knowledge_service_manifest.schema.json",
+  "title": "Governed Knowledge Service Manifest",
+  "type": "object",
+  "required": [
+    "manifest_schema_version",
+    "service_id",
+    "service_kind",
+    "service_version",
+    "service_root",
+    "owner",
+    "access_boundary",
+    "allowed_consumer_system_ids",
+    "requires_explicit_service_declaration",
+    "no_project_authority_claim",
+    "source_artifact_boundary"
+  ],
+  "properties": {
+    "manifest_schema_version": {"type": "integer", "const": 1},
+    "service_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "service_kind": {"type": "string", "const": "source_backed_knowledge"},
+    "service_version": {"type": "string", "minLength": 1},
+    "service_root": {"type": "string", "pattern": "^Knowledge/[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "owner": {
+      "type": "object",
+      "required": ["owner_type", "owner_id", "contract_reference"],
+      "properties": {
+        "owner_type": {"type": "string", "enum": ["skill", "system", "governed_service"]},
+        "owner_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "contract_reference": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/]).+"}
+      },
+      "additionalProperties": false
+    },
+    "access_boundary": {
+      "type": "object",
+      "required": ["source_material_reading", "workspace_scanning", "automatic_content_import", "automatic_rule_promotion"],
+      "properties": {
+        "source_material_reading": {"type": "string", "const": "explicit_user_authorized_only"},
+        "workspace_scanning": {"type": "boolean", "const": false},
+        "automatic_content_import": {"type": "boolean", "const": false},
+        "automatic_rule_promotion": {"type": "boolean", "const": false}
+      },
+      "additionalProperties": false
+    },
+    "allowed_consumer_system_ids": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+      "uniqueItems": true
+    },
+    "requires_explicit_service_declaration": {"type": "boolean", "const": true},
+    "no_project_authority_claim": {"type": "boolean", "const": true},
+    "source_artifact_boundary": {"type": "string", "const": "pointer_only"}
+  },
+  "additionalProperties": false
+}

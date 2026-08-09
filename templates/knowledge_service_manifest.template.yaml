@@ -1,0 +1,19 @@
+# Replace angle-bracket placeholders. Keep all paths workspace-relative.
+manifest_schema_version: 1
+service_id: <knowledge-service-id>
+service_kind: source_backed_knowledge
+service_version: <service-version>
+service_root: Knowledge/<knowledge-service-id>
+owner:
+  owner_type: <skill|system|governed_service>
+  owner_id: <owner-id>
+  contract_reference: <workspace-relative-owner-contract>
+access_boundary:
+  source_material_reading: explicit_user_authorized_only
+  workspace_scanning: false
+  automatic_content_import: false
+  automatic_rule_promotion: false
+allowed_consumer_system_ids: []
+requires_explicit_service_declaration: true
+no_project_authority_claim: true
+source_artifact_boundary: pointer_only

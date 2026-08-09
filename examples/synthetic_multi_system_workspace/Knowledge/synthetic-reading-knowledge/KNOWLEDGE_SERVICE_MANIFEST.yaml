@@ -1,0 +1,19 @@
+manifest_schema_version: 1
+service_id: synthetic-reading-knowledge
+service_kind: source_backed_knowledge
+service_version: 0.1.0
+service_root: Knowledge/synthetic-reading-knowledge
+owner:
+  owner_type: system
+  owner_id: example-research-system
+  contract_reference: Systems/example-research-system/SYSTEM_MANIFEST.yaml
+access_boundary:
+  source_material_reading: explicit_user_authorized_only
+  workspace_scanning: false
+  automatic_content_import: false
+  automatic_rule_promotion: false
+allowed_consumer_system_ids:
+  - example-research-system
+requires_explicit_service_declaration: true
+no_project_authority_claim: true
+source_artifact_boundary: pointer_only

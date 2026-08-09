@@ -28,6 +28,12 @@ Requirements:
 - retain standalone-equivalent safety boundaries when an optional service is
   missing.
 
+For a registered knowledge service, the workspace `shared_services` entry, the
+service manifest's allowed-consumer list, and the System
+`optional_shared_services` entry must agree. A System must stop at the
+optional-service boundary when they do not agree; it must not scan `Knowledge/`
+or create a missing service.
+
 For the v0.2.0 future full profile, the Framework creates its declared shared
 roots but no top-level `Papers/` root. A concrete System owns manuscript and
 submission structure. Existing workspaces that retain `roots.papers: Papers`
