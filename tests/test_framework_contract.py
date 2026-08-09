@@ -1,5 +1,6 @@
 import json
 import importlib.util
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -225,10 +226,14 @@ class FrameworkContractTests(unittest.TestCase):
     def test_public_package_contains_no_manager_database_or_source_artifact(self):
         forbidden_suffixes = {".pdf", ".pyc", ".sqlite", ".sqlite3"}
         forbidden_names = {"zotero.sqlite", "zotero.sqlite.bak", "zotero.sqlite-journal"}
+        tracked_files = subprocess.run(
+            ["git", "ls-files"], cwd=ROOT, text=True, check=True, capture_output=True
+        ).stdout.splitlines()
         offenders = [
-            path.relative_to(ROOT).as_posix()
-            for path in ROOT.rglob("*")
-            if path.is_file() and (path.suffix.lower() in forbidden_suffixes or path.name.lower() in forbidden_names)
+            relative_path
+            for relative_path in tracked_files
+            if Path(relative_path).suffix.lower() in forbidden_suffixes
+            or Path(relative_path).name.lower() in forbidden_names
         ]
         self.assertEqual(offenders, [])
 
