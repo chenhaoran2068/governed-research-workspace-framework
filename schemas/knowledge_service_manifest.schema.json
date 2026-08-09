@@ -17,7 +17,7 @@
     "source_artifact_boundary"
   ],
   "properties": {
-    "manifest_schema_version": {"type": "integer", "const": 1},
+    "manifest_schema_version": {"type": "integer", "enum": [1, 2]},
     "service_id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
     "service_kind": {"type": "string", "const": "source_backed_knowledge"},
     "service_version": {"type": "string", "minLength": 1},
@@ -50,7 +50,49 @@
     },
     "requires_explicit_service_declaration": {"type": "boolean", "const": true},
     "no_project_authority_claim": {"type": "boolean", "const": true},
-    "source_artifact_boundary": {"type": "string", "const": "pointer_only"}
+    "source_artifact_boundary": {
+      "oneOf": [
+        {"type": "string", "const": "pointer_only"},
+        {
+          "type": "object",
+          "required": [
+            "mode",
+            "artifact_store_root",
+            "manager_kind",
+            "public_derivation",
+            "workspace_scanning",
+            "automatic_content_import",
+            "migration_rule"
+          ],
+          "properties": {
+            "mode": {"type": "string", "const": "managed_local_reference_library"},
+            "artifact_store_root": {
+              "type": "string",
+              "pattern": "^Knowledge/[a-z0-9]+(?:-[a-z0-9]+)*/reference_manager/[a-z0-9]+(?:-[a-z0-9]+)*$"
+            },
+            "manager_kind": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+            "public_derivation": {"type": "string", "const": "excluded"},
+            "workspace_scanning": {"type": "boolean", "const": false},
+            "automatic_content_import": {"type": "boolean", "const": false},
+            "migration_rule": {
+              "type": "string",
+              "enum": ["closed_manager_user_directed_copy_or_native_manager_sync"]
+            }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
   },
+  "allOf": [
+    {
+      "if": {"properties": {"manifest_schema_version": {"const": 1}}},
+      "then": {"properties": {"source_artifact_boundary": {"type": "string", "const": "pointer_only"}}}
+    },
+    {
+      "if": {"properties": {"manifest_schema_version": {"const": 2}}},
+      "then": {"properties": {"source_artifact_boundary": {"type": "object"}}}
+    }
+  ],
   "additionalProperties": false
 }

@@ -17,6 +17,8 @@ This repository contains a generic workspace framework only.
 - credentials, tokens, private paths, local runtime caches, or account details;
 - copyrighted source payloads without explicit redistribution rights; and
 - copied private memory, unreviewed lessons, or institution-specific claims.
+- reference-manager databases, library attachments, PDF files, manager
+  configuration, account details, or a real service manifest.
 
 ## Derivation Rule
 
