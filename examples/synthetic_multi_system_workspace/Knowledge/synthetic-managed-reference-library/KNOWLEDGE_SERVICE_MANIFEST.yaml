@@ -1,25 +1,25 @@
-# Replace angle-bracket placeholders. Keep all paths workspace-relative.
 manifest_schema_version: 2
-service_id: <knowledge-service-id>
+service_id: synthetic-managed-reference-library
 service_kind: source_backed_knowledge
-service_version: <service-version>
-service_root: Knowledge/<knowledge-service-id>
+service_version: 0.1.0
+service_root: Knowledge/synthetic-managed-reference-library
 owner:
-  owner_type: <skill|system|governed_service>
-  owner_id: <owner-id>
-  contract_reference: <workspace-relative-owner-contract>
+  owner_type: skill
+  owner_id: synthetic-reading-skill
+  contract_reference: Skills/synthetic-reading-skill/SKILL.md
 access_boundary:
   source_material_reading: explicit_user_authorized_only
   workspace_scanning: false
   automatic_content_import: false
   automatic_rule_promotion: false
-allowed_consumer_system_ids: []
+allowed_consumer_system_ids:
+  - example-research-system
 requires_explicit_service_declaration: true
 no_project_authority_claim: true
 source_artifact_boundary:
   mode: managed_local_reference_library
-  artifact_store_root: Knowledge/<knowledge-service-id>/reference_manager/<manager-owned-library>
-  manager_kind: <reference-manager-kind>
+  artifact_store_root: Knowledge/synthetic-managed-reference-library/reference_manager/synthetic-zotero-data
+  manager_kind: zotero
   public_derivation: excluded
   workspace_scanning: false
   automatic_content_import: false

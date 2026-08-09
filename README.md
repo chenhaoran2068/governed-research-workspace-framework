@@ -58,7 +58,8 @@ See:
 - [reference workspace tree](docs/reference_workspace_tree.md)
 - [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md)
 - [multi-system contract](docs/multi_system_contract.md)
-- [knowledge-service contract](docs/knowledge_service_contract_v1.md)
+- [knowledge-service contract v1](docs/knowledge_service_contract_v1.md)
+- [controlled reference-manager library contract](docs/controlled_reference_manager_library_contract_v1.md)
 - [installation profiles](docs/installation_profiles.md)
 - [Papers-root retirement compatibility](docs/papers_root_retirement_compatibility_v1.md)
 - [public/private boundary](docs/public_private_boundary.md)
@@ -94,12 +95,12 @@ owned by the concrete installed System. Existing workspace manifests and
 physical `Papers/` directories are neither inspected nor migrated by this
 package. See the [compatibility statement](docs/papers_root_retirement_compatibility_v1.md).
 
-The unreleased v0.3.0 candidate adds a generic, opt-in knowledge-service
-contract. A registered knowledge service has an explicit identity, owner,
-version, and access boundary under `Knowledge/<knowledge-service-id>/`. This
-does not create a knowledge service during bootstrap, define a universal
-knowledge taxonomy, or identify any concrete skill, reference manager, or
-knowledge library as a Framework requirement.
+The released v0.3.0 contract adds a generic, opt-in pointer-only
+knowledge-service contract. The v0.4.0 candidate additionally permits one
+explicitly declared, private, manager-owned local reference library below the
+registered service root. Neither contract creates a knowledge service during
+bootstrap, defines a universal knowledge taxonomy, or requires a concrete
+skill, reference manager, or knowledge library.
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval

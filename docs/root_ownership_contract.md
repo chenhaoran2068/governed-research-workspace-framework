@@ -13,7 +13,7 @@ grants and are not required to contain every possible system module.
 | `Systems/` | System control planes, runtime contracts, system-local templates, validators, and tests. | Real project authority, general shared libraries, or raw data holdings. |
 | `Skills/` | Reusable skill packages and registry records. | Project outputs, installed runtime caches, or duplicated system content. |
 | `Shared/` | Cross-project rules, approved shared references, stable memory, promotion queues, and shared utilities. | Active project state, final conclusions, or project release decisions. |
-| `Knowledge/` | Registered source-backed knowledge services, their provenance, curation, and bounded retrieval surfaces. | General memory, unbounded source dumping, project-specific interpretation, or a second ungoverned source-artifact library. |
+| `Knowledge/` | Registered source-backed knowledge services, their provenance, curation, and bounded retrieval surfaces; an explicitly declared private manager-owned source library may live below its service root. | General memory, unbounded source dumping, project-specific interpretation, or a second ungoverned source-artifact library. |
 | `Methods/` | Method workbenches, reusable pipelines, and method validation. | Lifecycle ownership for every project using a method. |
 | `Instances/` | Real project and program workspaces. | Cross-project authority or public release source. |
 | `Data_Raw/` | Retained source-data holdings. | Analysis-ready project data, result authority, or public-release approval. |
@@ -36,6 +36,9 @@ grants and are not required to contain every possible system module.
    universal `Papers/` root for either purpose.
 7. A knowledge service is opt-in: its workspace registration, service manifest,
    and consumer declaration must agree before a System uses it.
+8. A managed local reference library is private source material. It remains
+   owned by its declared service, excluded from public derivation, and is never
+   copied into a project by this Framework.
 
 The [reference workspace tree](reference_workspace_tree.md) defines the
 cross-system second-level placement points. Concrete systems and projects own

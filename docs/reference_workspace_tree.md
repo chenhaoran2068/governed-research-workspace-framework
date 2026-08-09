@@ -1,6 +1,6 @@
 # Reference Workspace Tree
 
-Status: `v0.2.0` reference layout. This document describes stable locations
+Status: `v0.4.0` reference layout. This document describes stable locations
 and ownership boundaries; it is not an installer and does not make any
 directory mandatory merely by naming it.
 
@@ -37,6 +37,8 @@ safely between services.
   Knowledge/                                      [bootstrap default]
     <knowledge-service-id>/                       [only when explicitly registered]
       KNOWLEDGE_SERVICE_MANIFEST.yaml             [required for a registered service]
+      reference_manager/                          [only for an explicitly declared private manager library]
+        <manager-owned-library>/                  [private source artifacts; never public by default]
       ...service-owned curated knowledge records...
   Methods/                                        [bootstrap default]
     ...method workbenches as configured...
@@ -112,6 +114,12 @@ service. Bootstrap creates neither this service directory nor its manifest.
 `Github/` holds local worktrees for reviewed public derivatives. It cannot
 replace private authority or be used to copy private projects into a public
 repository.
+
+An opted-in `managed_local_reference_library` remains below the owning
+knowledge-service root. Its manifest must name a workspace-relative artifact
+store, prohibit scanning, exclude raw artifacts from public derivation, and
+use only a closed-manager copy or native-manager sync for migration. The
+Framework does not create that directory during bootstrap.
 
 ## What This Tree Does Not Standardize
 

@@ -10,6 +10,8 @@ permissions:
 jobs:
   contract-check:
     runs-on: ${{ matrix.os }}
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
     strategy:
       fail-fast: false
       matrix:

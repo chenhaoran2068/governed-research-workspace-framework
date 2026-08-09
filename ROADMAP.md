@@ -2,6 +2,16 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
+## v0.4.0 Controlled Reference-Manager Library
+
+This release adds an opt-in version-2 knowledge-service manifest for one
+private, manager-owned source-artifact library below a registered service root.
+It requires a workspace-relative store, explicit public exclusion, disabled
+scanning, disabled Framework-level automatic import, and a safe migration rule.
+It preserves version-1 `pointer_only` manifests and empty bootstrap behavior.
+It does not identify a user, install a manager, configure an account, retain a
+real source artifact, or create a real knowledge service.
+
 ## v0.3.0 Knowledge-Service Contract
 
 This candidate adds an opt-in, generic contract for a registered knowledge

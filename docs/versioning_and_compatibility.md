@@ -33,6 +33,18 @@ knowledge service remain valid and unchanged. A System may claim use of a
 knowledge service only after it validates the exact Framework release and the
 matching workspace, service, and consumer declarations.
 
+## v0.4.0 Controlled Reference-Manager Compatibility
+
+Framework v0.4.0 retains manifest schema version `1` for workspace manifests
+and supports both version `1` pointer-only and version `2` managed-library
+knowledge-service manifests. A version-2 service may declare one
+workspace-relative, private, manager-owned artifact store below its own
+`Knowledge/<service-id>/` root. The Framework does not migrate a version-1
+service, create a manager directory, configure an account, or copy a live
+manager database. A consumer System must validate the exact service manifest,
+its own optional declaration, and the exact Framework release before claiming
+use of this mode.
+
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.
