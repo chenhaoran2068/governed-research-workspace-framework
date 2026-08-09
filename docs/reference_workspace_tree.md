@@ -15,8 +15,9 @@ The framework defines three levels:
    the primary system's project-specific structure.
 
 It deliberately does not define universal data, manuscript, method, or
-knowledge subdirectories. Those structures are owned by the relevant concrete
-system or project and may differ safely between systems.
+knowledge taxonomies. A registered knowledge service has one generic manifest
+location, but its internal records remain owned by that service and may differ
+safely between services.
 
 ## Reference Tree
 
@@ -34,7 +35,9 @@ system or project and may differ safely between systems.
     <shared-service-id>/                          [only when an approved service exists]
       ...service-owned content...
   Knowledge/                                      [bootstrap default]
-    ...curated, source-backed records as configured...
+    <knowledge-service-id>/                       [only when explicitly registered]
+      KNOWLEDGE_SERVICE_MANIFEST.yaml             [required for a registered service]
+      ...service-owned curated knowledge records...
   Methods/                                        [bootstrap default]
     ...method workbenches as configured...
   Instances/                                      [bootstrap default]
@@ -100,6 +103,12 @@ identified owner and an appropriate sharing boundary. A system may use a
 shared service only when its own manifest declares it and the workspace makes
 it available.
 
+A knowledge service is registered only when its identifier appears in the
+workspace manifest's `shared_services`, its service manifest exists at
+`Knowledge/<knowledge-service-id>/KNOWLEDGE_SERVICE_MANIFEST.yaml`, and its
+declared consumer System also names that identifier as an optional shared
+service. Bootstrap creates neither this service directory nor its manifest.
+
 `Github/` holds local worktrees for reviewed public derivatives. It cannot
 replace private authority or be used to copy private projects into a public
 repository.
@@ -110,7 +119,8 @@ The following remain system- or project-specific:
 
 - data lifecycle layers and access restrictions;
 - protocol, ethics, analysis, manuscript, and submission directories;
-- knowledge taxonomy and external-source records;
+- knowledge taxonomy, external-source records, and a service's internal
+  knowledge layout;
 - detailed skill runtime installation paths; and
 - cache, archive, and operational retention policy.
 

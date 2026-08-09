@@ -94,7 +94,9 @@ Data_Raw/  Github/  Ops/  Archive/
 
 Also create the root `WORKSPACE_MANIFEST.yaml`, orientation `README.md`, and
 `bootstrap_receipt.json`. The manifest has no registered systems and no shared
-services. Empty roots do not create access rights or active capabilities.
+services. In particular, bootstrap does not create a directory or manifest for
+a registered knowledge service. Empty roots do not create access rights or
+active capabilities.
 
 ### `standalone`
 

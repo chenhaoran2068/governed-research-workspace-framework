@@ -10,7 +10,8 @@ required_dependencies: []
 optional_shared_services:
   - reusable-skills
   - source-backed-knowledge
+  - synthetic-reading-knowledge
 framework_compatibility:
-  supported_framework_versions: ">=0.1.0 <0.3.0"
+  supported_framework_versions: ">=0.1.0 <0.4.0"
 project_ownership_behavior: primary_system
 data_access_boundary: no-data-access-is-granted-by-this-manifest

@@ -2,6 +2,23 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
+## v0.3.0 Knowledge-Service Contract
+
+This candidate adds an opt-in, generic contract for a registered knowledge
+service. It:
+
+- defines a versioned service manifest under
+  `Knowledge/<knowledge-service-id>/`;
+- requires explicit workspace registration and explicit consumer-System
+  declaration before a System may use the service;
+- preserves the empty `Knowledge/` root created by a confirmed bootstrap; and
+- keeps the workspace-manifest schema at version `1` by using its existing
+  optional `shared_services` field.
+
+It does not create a service, require any concrete skill or software, scan a
+workspace, retain source artifacts, or grant source-reading, project, rule,
+or release authority.
+
 ## v0.2.0 Papers-Root Retirement
 
 This path-contract release changes future confirmed

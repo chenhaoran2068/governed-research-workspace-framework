@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft202012Validator, RefResolver
+from jsonschema import Draft202012Validator, RefResolver, ValidationError
 
 ROOT = Path(__file__).resolve().parents[1]
 PRIVATE_MARKERS = ("E:\\\\", "C:\\\\Users", "Chenhaoran", "patient-derived")
@@ -26,6 +26,7 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/reference_workspace_tree.md",
             "docs/controlled_workspace_bootstrap_design_v1.md",
             "docs/multi_system_contract.md",
+            "docs/knowledge_service_contract_v1.md",
             "docs/installation_profiles.md",
             "docs/papers_root_retirement_compatibility_v1.md",
             "docs/release/V0_1_1_RELEASE_GATE.md",
@@ -44,6 +45,7 @@ class FrameworkContractTests(unittest.TestCase):
             "schemas/workspace_manifest.schema.json",
             "schemas/system_manifest.schema.json",
             "schemas/project_system_binding.schema.json",
+            "schemas/knowledge_service_manifest.schema.json",
             "templates/workspace_manifest.template.yaml",
             "templates/workspace_manifest.standalone.template.yaml",
             "templates/workspace_manifest.framework_integrated.template.yaml",
@@ -51,7 +53,13 @@ class FrameworkContractTests(unittest.TestCase):
             "scripts/bootstrap_workspace.py",
             "templates/system_manifest.template.yaml",
             "templates/project_system_binding.template.yaml",
+            "templates/knowledge_service_manifest.template.yaml",
             "examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml",
+            "examples/synthetic_multi_system_workspace/Knowledge/synthetic-reading-knowledge/KNOWLEDGE_SERVICE_MANIFEST.yaml",
+            "docs/release/V0_3_0_RELEASE_GATE.md",
+            "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.3.0.md",
+            "docs/release/RELEASE_NOTES_v0.3.0.md",
+            "docs/release/V0_3_0_RELEASE_EVIDENCE.md",
         ]
         missing = [path for path in required if not (ROOT / path).is_file()]
         self.assertEqual(missing, [])
@@ -65,9 +73,11 @@ class FrameworkContractTests(unittest.TestCase):
 
         workspace = json.loads((ROOT / "schemas/workspace_manifest.schema.json").read_text(encoding="utf-8"))
         system = json.loads((ROOT / "schemas/system_manifest.schema.json").read_text(encoding="utf-8"))
+        knowledge_service = self._load_schema("knowledge_service_manifest.schema.json")
         self.assertIn("framework_version", workspace["required"])
         self.assertIn("allOf", system)
         self.assertIn("framework_compatibility", system["properties"])
+        self.assertEqual(knowledge_service["properties"]["service_kind"]["const"], "source_backed_knowledge")
         for schema_path in (ROOT / "schemas").glob("*.schema.json"):
             Draft202012Validator.check_schema(json.loads(schema_path.read_text(encoding="utf-8")))
 
@@ -75,6 +85,7 @@ class FrameworkContractTests(unittest.TestCase):
         workspace_schema = self._load_schema("workspace_manifest.schema.json")
         system_schema = self._load_schema("system_manifest.schema.json")
         project_schema = self._load_schema("project_system_binding.schema.json")
+        knowledge_service_schema = self._load_schema("knowledge_service_manifest.schema.json")
         resolver = RefResolver(
             workspace_schema["$id"],
             workspace_schema,
@@ -84,6 +95,7 @@ class FrameworkContractTests(unittest.TestCase):
         workspace_validator = Draft202012Validator(workspace_schema, resolver=resolver)
         system_validator = Draft202012Validator(system_schema)
         project_validator = Draft202012Validator(project_schema)
+        knowledge_service_validator = Draft202012Validator(knowledge_service_schema)
 
         for path in [
             "profiles/standalone_workspace.example.yaml",
@@ -101,10 +113,13 @@ class FrameworkContractTests(unittest.TestCase):
         project_validator.validate(self._load_yaml(
             "examples/synthetic_multi_system_workspace/Instances/Research0001_synthetic/00_state/PROJECT_SYSTEM_BINDING.yaml"
         ))
+        knowledge_service_validator.validate(self._load_yaml(
+            "examples/synthetic_multi_system_workspace/Knowledge/synthetic-reading-knowledge/KNOWLEDGE_SERVICE_MANIFEST.yaml"
+        ))
 
-    def test_synthetic_registered_systems_cover_the_v0_2_workspace_example(self):
+    def test_synthetic_registered_systems_cover_the_v0_3_workspace_example(self):
         workspace = self._load_yaml("examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml")
-        self.assertEqual(workspace["framework_version"], "0.2.0")
+        self.assertEqual(workspace["framework_version"], "0.3.0")
         for path in [
             "examples/synthetic_multi_system_workspace/Systems/example-research-system/SYSTEM_MANIFEST.yaml",
             "examples/synthetic_multi_system_workspace/Systems/example-method-system/SYSTEM_MANIFEST.yaml",
@@ -112,8 +127,37 @@ class FrameworkContractTests(unittest.TestCase):
             system = self._load_yaml(path)
             self.assertEqual(
                 system["framework_compatibility"]["supported_framework_versions"],
-                ">=0.1.0 <0.3.0",
+                ">=0.1.0 <0.4.0",
             )
+
+    def test_synthetic_knowledge_service_requires_explicit_consumer_matching(self):
+        workspace = self._load_yaml("examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml")
+        service = self._load_yaml(
+            "examples/synthetic_multi_system_workspace/Knowledge/synthetic-reading-knowledge/KNOWLEDGE_SERVICE_MANIFEST.yaml"
+        )
+        systems = {
+            system["system_id"]: system
+            for system in (
+                self._load_yaml("examples/synthetic_multi_system_workspace/Systems/example-research-system/SYSTEM_MANIFEST.yaml"),
+                self._load_yaml("examples/synthetic_multi_system_workspace/Systems/example-method-system/SYSTEM_MANIFEST.yaml"),
+            )
+        }
+
+        self.assertIn(service["service_id"], workspace["shared_services"])
+        self.assertEqual(service["service_root"], "Knowledge/" + service["service_id"])
+        self.assertEqual(service["allowed_consumer_system_ids"], ["example-research-system"])
+        self.assertIn(service["service_id"], systems["example-research-system"]["optional_shared_services"])
+        self.assertNotIn(service["service_id"], systems["example-method-system"]["optional_shared_services"])
+
+    def test_knowledge_service_schema_rejects_relaxed_access_boundary(self):
+        schema = self._load_schema("knowledge_service_manifest.schema.json")
+        validator = Draft202012Validator(schema)
+        service = self._load_yaml(
+            "examples/synthetic_multi_system_workspace/Knowledge/synthetic-reading-knowledge/KNOWLEDGE_SERVICE_MANIFEST.yaml"
+        )
+        service["access_boundary"]["workspace_scanning"] = True
+        with self.assertRaises(ValidationError):
+            validator.validate(service)
 
     def test_templates_and_examples_have_no_private_workspace_markers(self):
         checked_roots = [ROOT / "profiles", ROOT / "templates", ROOT / "examples", ROOT / "scripts"]
@@ -144,6 +188,7 @@ class FrameworkContractTests(unittest.TestCase):
         ]:
             self.assertIn(location, tree)
         self.assertIn("does not define universal data, manuscript, method, or", tree)
+        self.assertIn("KNOWLEDGE_SERVICE_MANIFEST.yaml", tree)
         self.assertNotIn("Papers/                                         [bootstrap default]", tree)
         roots = (ROOT / "docs" / "root_ownership_contract.md").read_text(encoding="utf-8")
         self.assertNotIn("| `Papers/` |", roots)
@@ -166,10 +211,11 @@ class FrameworkContractTests(unittest.TestCase):
         script = (ROOT / "scripts/bootstrap_workspace.py").read_text(encoding="utf-8")
         versioning = (ROOT / "docs/versioning_and_compatibility.md").read_text(encoding="utf-8")
         evidence = (ROOT / "docs/release/V0_1_1_RELEASE_EVIDENCE.md").read_text(encoding="utf-8")
-        self.assertIn('TOOL_VERSION = "0.2.0"', script)
-        self.assertIn('FRAMEWORK_VERSION = "0.2.0"', script)
+        self.assertIn('TOOL_VERSION = "0.3.0"', script)
+        self.assertIn('FRAMEWORK_VERSION = "0.3.0"', script)
         self.assertNotIn("0.1.0-framework-candidate", script)
         self.assertIn("immutable public contract by policy", versioning)
+        self.assertIn("## v0.3.0 Knowledge-Service Compatibility", versioning)
         self.assertIn("R11-G6", evidence)
         self.assertIn("R11-G7", evidence)
 

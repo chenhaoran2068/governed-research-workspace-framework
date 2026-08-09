@@ -37,6 +37,24 @@ source-backed knowledge service, or shared-reference library.
 Systems must use explicit paths, records, or pointers. They must not scan an
 entire workspace to infer configuration or read another system's private area.
 
+### Registered Knowledge Services
+
+A registered knowledge service is a shared service whose workspace-relative
+root is `Knowledge/<knowledge-service-id>/` and whose
+`KNOWLEDGE_SERVICE_MANIFEST.yaml` conforms to the Framework knowledge-service
+schema. A skill or System may own the service contract, but a consumer System
+may use it only when all of the following are true:
+
+1. the workspace manifest lists the service identifier in `shared_services`;
+2. the service manifest names the consumer System in
+   `allowed_consumer_system_ids`; and
+3. the consumer System lists the identifier in `optional_shared_services`.
+
+Registration does not authorize source reading, source-artifact retention,
+project access, knowledge-card creation, rule promotion, or a project-state
+transition. A missing or mismatched declaration is an unavailable optional
+service, not a reason to search or repair the workspace.
+
 ## Isolation Rule
 
 Sharing is selective. Share only a capability whose owner, version, access

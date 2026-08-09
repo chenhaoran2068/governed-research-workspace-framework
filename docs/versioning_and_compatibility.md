@@ -24,6 +24,15 @@ or inspect a physical `Papers/` directory. A concrete System may claim
 framework-integrated v0.2 compatibility only after it separately declares and
 validates that support.
 
+## v0.3.0 Knowledge-Service Compatibility
+
+Framework v0.3.0 adds an optional knowledge-service manifest and uses the
+existing optional `shared_services` workspace-manifest field. It retains
+workspace-manifest schema version `1`; workspaces without a registered
+knowledge service remain valid and unchanged. A System may claim use of a
+knowledge service only after it validates the exact Framework release and the
+matching workspace, service, and consumer declarations.
+
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.

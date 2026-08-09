@@ -84,8 +84,8 @@ class BootstrapWorkspaceTests(unittest.TestCase):
         payload = self.preview()
         self.assertEqual(list(self.parent.iterdir()), [])
         plan = payload["plan"]
-        self.assertEqual(plan["tool_version"], "0.2.0")
-        self.assertEqual(plan["framework_version"], "0.2.0")
+        self.assertEqual(plan["tool_version"], "0.3.0")
+        self.assertEqual(plan["framework_version"], "0.3.0")
         self.assertEqual(plan["workspace_id"], "example-workspace")
         self.assertEqual(plan["profile"], "framework_integrated")
         self.assertIn("parent_identity", plan)
@@ -134,6 +134,8 @@ class BootstrapWorkspaceTests(unittest.TestCase):
                     self.assertNotIn("papers", manifest["roots"])
                 self.assertEqual(manifest["registered_systems"], [])
                 self.assertEqual(manifest["shared_services"], [])
+                if profile == "framework_integrated":
+                    self.assertEqual(list((workspace / "Knowledge").iterdir()), [])
 
                 receipt = json.loads((workspace / "bootstrap_receipt.json").read_text(encoding="utf-8"))
                 self.assertEqual(receipt["approval_reference"], "approval-001")
