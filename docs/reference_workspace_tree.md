@@ -1,18 +1,20 @@
 # Reference Workspace Tree
 
-Status: `v0.4.0` reference layout. This document describes stable locations
+Status: `v0.5.0` candidate reference layout. This document describes stable locations
 and ownership boundaries; it is not an installer and does not make any
 directory mandatory merely by naming it.
 
 ## Scope
 
-The framework defines three levels:
+The framework defines four levels:
 
 1. **Workspace level**: root ownership and registration records.
 2. **System level**: a concrete system's manifest and self-owned package
    layout.
-3. **Project level**: one real project's binding to its primary system and
-   the primary system's project-specific structure.
+3. **Study level**: one real Study's binding to its primary system and the
+   primary system's Study-specific structure.
+4. **Research Program level (optional)**: an instance-local metadata index
+   that relates independently governed Studies without moving or merging them.
 
 It deliberately does not define universal data, manuscript, method, or
 knowledge taxonomies. A registered knowledge service has one generic manifest
@@ -43,10 +45,16 @@ safely between services.
   Methods/                                        [bootstrap default]
     ...method workbenches as configured...
   Instances/                                      [bootstrap default]
-    <project-id>/                                 [on real project creation]
+    <study-id>/                                   [on real Study creation]
       00_state/
         PROJECT_SYSTEM_BINDING.yaml               [required once the project is bound]
       ...primary-system-owned project content...
+    <instance-id>/                                [only when a concrete System declares an instance root]
+      Registry/
+        Research_Programs/
+          <research-program-id>/                  [only after human-reviewed grouping]
+            research_program_index.json
+      ...System-owned Study containers or existing Study roots...
   Data_Raw/                                       [bootstrap default]
     ...retained source holdings only when permitted...
   Github/                                         [bootstrap default]
@@ -57,8 +65,9 @@ safely between services.
     ...retained historical material as configured...
 ```
 
-`<workspace>`, `<system-id>`, `<skill-id>`, `<shared-service-id>`, and
-`<project-id>` are placeholders. They are never literal required names.
+`<workspace>`, `<system-id>`, `<skill-id>`, `<shared-service-id>`,
+`<study-id>`, and `<research-program-id>` are placeholders. They are never
+literal required names.
 
 ## Lifecycle Rules
 
@@ -85,18 +94,27 @@ A system becomes registered only when:
 The system owns all deeper package layout. The framework does not decide
 whether a system has agents, scripts, templates, knowledge, or project tools.
 
-### Project Creation
+### Study Creation
 
-A real project is placed under `Instances/<project-id>/`. Once it has a
-primary system, `00_state/PROJECT_SYSTEM_BINDING.yaml` records that system and
-any explicitly contributing systems. The primary system owns the remaining
-project lifecycle and project-specific subdirectories.
+A real Study is placed under `Instances/<study-id>/`. Once it has a primary
+system, `00_state/PROJECT_SYSTEM_BINDING.yaml` records that system and any
+explicitly contributing systems. `project` remains the legacy field vocabulary
+inside that binding; it denotes the Study-level workspace. The primary system
+owns the remaining Study lifecycle and Study-specific subdirectories.
 
 The primary System, not this Framework, defines any project manuscript or
 submission area. The Framework does not create a top-level paper workspace.
 
 The framework does not authorize project execution, data access, analysis,
 compliance, release, or submission through this binding.
+
+### Research Program Registry
+
+An optional instance-local Research Program index may relate named existing
+Study roots. It is not a parent directory for those Studies and does not
+change their physical paths. The index records membership and narrowly scoped
+shared references only; it cannot merge Study facts, transfer authority, or
+grant access. See [the Research Program registry contract](research_program_registry_contract_v1.md).
 
 ### Shared and Public Material
 

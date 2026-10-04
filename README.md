@@ -1,9 +1,10 @@
 # Governed Research Workspace Framework
 
-Status: public release package. Determine the current published version from
-the exact GitHub Release and its associated tag; do not infer it from a branch
-name or a retained candidate record. The Windows, Ubuntu, and macOS CI matrix
-passed on Python 3.11 and 3.14 for the latest verified release evidence.
+Status: v0.5.0 Research Program registry candidate source, derived from the
+public v0.4.0 baseline. Determine the current published version from its exact
+GitHub Release and associated tag; do not infer it from this branch or a
+retained candidate record. The Windows, Ubuntu, and macOS CI matrix results
+belong to their exact verified release evidence.
 
 ## Purpose
 
@@ -48,8 +49,12 @@ System Package
 Skill
   -> a focused, reusable entry or capability used by one or more systems
 
-Project Instance
+Study Instance
   -> one real study with one primary system and optional contributors
+
+Research Program
+  -> an optional, human-reviewed registry that relates independent Study
+     instances without moving them or merging their authority
 ```
 
 See:
@@ -58,6 +63,7 @@ See:
 - [reference workspace tree](docs/reference_workspace_tree.md)
 - [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md)
 - [multi-system contract](docs/multi_system_contract.md)
+- [research-program registry contract](docs/research_program_registry_contract_v1.md)
 - [knowledge-service contract v1](docs/knowledge_service_contract_v1.md)
 - [controlled reference-manager library contract](docs/controlled_reference_manager_library_contract_v1.md)
 - [installation profiles](docs/installation_profiles.md)
@@ -96,11 +102,16 @@ physical `Papers/` directories are neither inspected nor migrated by this
 package. See the [compatibility statement](docs/papers_root_retirement_compatibility_v1.md).
 
 The released v0.3.0 contract adds a generic, opt-in pointer-only
-knowledge-service contract. The v0.4.0 candidate additionally permits one
+knowledge-service contract. The released v0.4.0 contract additionally permits one
 explicitly declared, private, manager-owned local reference library below the
 registered service root. Neither contract creates a knowledge service during
 bootstrap, defines a universal knowledge taxonomy, or requires a concrete
 skill, reference manager, or knowledge library.
+
+The v0.5.0 candidate adds an optional Research Program index for relating
+independent Study Instances within an already declared instance registry. It
+does not move Study roots, alter existing Study-level `project_id` records,
+create a Program, or transfer material access or authority.
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval

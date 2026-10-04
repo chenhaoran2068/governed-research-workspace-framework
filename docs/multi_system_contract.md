@@ -28,6 +28,21 @@ The project may name `contributing_systems`. A contributing system may provide
 a method, tool, skill, conversion, or review capability. It may not silently
 advance project state, change a release decision, or claim project authority.
 
+## Research Program Grouping
+
+An optional Research Program may be recorded in an instance-local registry to
+relate independent Study Instances. It is a metadata grouping, not a second
+primary System or a replacement for any Study's `project_id` or binding.
+
+Program membership needs accountable-human review of a stated upper-level
+purpose, bounded question family, and meaningful shared backbone or documented
+lineage. It does not merge Study content or let one Study inherit another's
+data access, ethics, result authority, manuscript state, submission route, or
+release decision.
+
+The Framework schema records only caller-supplied metadata. It does not scan
+for Studies, resolve references, decide membership, or create a Program.
+
 ## Shared Services
 
 A system may use a shared service only when its manifest declares that service

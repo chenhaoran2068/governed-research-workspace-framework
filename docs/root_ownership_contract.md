@@ -15,7 +15,7 @@ grants and are not required to contain every possible system module.
 | `Shared/` | Cross-project rules, approved shared references, stable memory, promotion queues, and shared utilities. | Active project state, final conclusions, or project release decisions. |
 | `Knowledge/` | Registered source-backed knowledge services, their provenance, curation, and bounded retrieval surfaces; an explicitly declared private manager-owned source library may live below its service root. | General memory, unbounded source dumping, project-specific interpretation, or a second ungoverned source-artifact library. |
 | `Methods/` | Method workbenches, reusable pipelines, and method validation. | Lifecycle ownership for every project using a method. |
-| `Instances/` | Real project and program workspaces. | Cross-project authority or public release source. |
+| `Instances/` | Real Study and Research Program workspaces, including an optional instance-local Program registry. | Cross-Study authority or public release source. |
 | `Data_Raw/` | Retained source-data holdings. | Analysis-ready project data, result authority, or public-release approval. |
 | `Github/` | Local worktrees for public repositories and release surfaces. | Private workspace authority. |
 | `Ops/` | Caches, temporary operations, and machine support. | Durable research knowledge or project authority. |
@@ -39,6 +39,8 @@ grants and are not required to contain every possible system module.
 8. A managed local reference library is private source material. It remains
    owned by its declared service, excluded from public derivation, and is never
    copied into a project by this Framework.
+9. A Research Program index may relate independent Studies, but does not move
+   them, merge them, or transfer access or authority between them.
 
 The [reference workspace tree](reference_workspace_tree.md) defines the
 cross-system second-level placement points. Concrete systems and projects own

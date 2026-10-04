@@ -45,6 +45,14 @@ manager database. A consumer System must validate the exact service manifest,
 its own optional declaration, and the exact Framework release before claiming
 use of this mode.
 
+## v0.5.0 Research Program Registry Compatibility
+
+Framework v0.5.0 adds an optional Research Program index schema, blank
+template, synthetic fixture, and instance-local placement guidance. It does
+not change the workspace-manifest schema, move existing Study roots, rename
+existing `project_id` fields, or require a Program registry. Existing
+workspaces remain valid without action.
+
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.
