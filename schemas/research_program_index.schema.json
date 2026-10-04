@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/research_program_index.schema.json",
+  "title": "Research Program Index",
+  "type": "object",
+  "required": ["record_type", "schema_version", "research_program_id", "display_name", "program_purpose", "membership_basis", "members", "shared_material_references", "boundary_declarations", "human_review"],
+  "properties": {
+    "record_type": {"const": "research_program_index"},
+    "schema_version": {"type": "integer", "const": 1},
+    "research_program_id": {"$ref": "#/$defs/slug"},
+    "display_name": {"type": "string", "minLength": 1},
+    "program_purpose": {"type": "string", "minLength": 1},
+    "membership_basis": {"type": "string", "minLength": 1},
+    "members": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/member"}},
+    "shared_material_references": {"type": "array", "items": {"$ref": "#/$defs/sharedMaterialReference"}},
+    "boundary_declarations": {
+      "type": "object",
+      "required": ["does_not_merge_studies", "does_not_transfer_authority", "does_not_grant_access"],
+      "properties": {
+        "does_not_merge_studies": {"const": true},
+        "does_not_transfer_authority": {"const": true},
+        "does_not_grant_access": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "human_review": {
+      "type": "object",
+      "required": ["status", "reviewed_at", "review_reference"],
+      "properties": {
+        "status": {"type": "string", "enum": ["proposed", "confirmed", "retired"]},
+        "reviewed_at": {"type": "string", "format": "date"},
+        "review_reference": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "safeRelativeReference": {"type": "string", "minLength": 1, "pattern": "^(?![A-Za-z]:)(?!/)(?!\\\\)(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+$"},
+    "member": {
+      "type": "object",
+      "required": ["study_id", "study_root_reference", "membership_status", "relationship_summary"],
+      "properties": {
+        "study_id": {"type": "string", "minLength": 1},
+        "study_root_reference": {"$ref": "#/$defs/safeRelativeReference"},
+        "membership_status": {"type": "string", "enum": ["proposed", "confirmed", "former"]},
+        "relationship_summary": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "sharedMaterialReference": {
+      "type": "object",
+      "required": ["source_artifact_reference", "owner_reference", "reference_mode", "receiving_scope", "source_version_or_date", "sharing_status", "review_reference"],
+      "properties": {
+        "source_artifact_reference": {"$ref": "#/$defs/safeRelativeReference"},
+        "owner_reference": {"$ref": "#/$defs/safeRelativeReference"},
+        "reference_mode": {"type": "string", "enum": ["pointer", "adopted_copy", "scoped_derivative"]},
+        "receiving_scope": {"type": "string", "minLength": 1},
+        "source_version_or_date": {"type": "string", "minLength": 1},
+        "sharing_status": {"type": "string", "enum": ["proposed", "approved", "retired"]},
+        "review_reference": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  }
+}

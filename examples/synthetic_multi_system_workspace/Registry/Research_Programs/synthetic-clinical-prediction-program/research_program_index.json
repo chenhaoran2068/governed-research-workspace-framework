@@ -1,0 +1,27 @@
+{
+  "record_type": "research_program_index",
+  "schema_version": 1,
+  "research_program_id": "synthetic-clinical-prediction-program",
+  "display_name": "Synthetic Clinical Prediction Program",
+  "program_purpose": "Group one synthetic Study for registry demonstration only.",
+  "membership_basis": "A bounded synthetic method lineage reviewed without sharing source material or authority.",
+  "members": [
+    {
+      "study_id": "Research0001_synthetic",
+      "study_root_reference": "Instances/Research0001_synthetic",
+      "membership_status": "confirmed",
+      "relationship_summary": "Synthetic Study used to demonstrate a non-authoritative Program index."
+    }
+  ],
+  "shared_material_references": [],
+  "boundary_declarations": {
+    "does_not_merge_studies": true,
+    "does_not_transfer_authority": true,
+    "does_not_grant_access": true
+  },
+  "human_review": {
+    "status": "confirmed",
+    "reviewed_at": "2026-01-01",
+    "review_reference": "synthetic-fixture-review"
+  }
+}

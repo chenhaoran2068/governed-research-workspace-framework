@@ -9,5 +9,7 @@ The example demonstrates:
 - one primary research system;
 - one contributing method system; and
 - one project binding that identifies the primary system.
+- one optional Research Program index that relates a named Study without
+  changing its location or authority.
 
 It does not demonstrate authorization to execute work or access any data.

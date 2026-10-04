@@ -1,0 +1,27 @@
+{
+  "record_type": "research_program_index",
+  "schema_version": 1,
+  "research_program_id": "<lowercase-hyphenated-program-id>",
+  "display_name": "<human-readable research-program name>",
+  "program_purpose": "<why these independent Studies are grouped>",
+  "membership_basis": "<bounded question family, stable shared backbone, or documented lineage>",
+  "members": [
+    {
+      "study_id": "<study-id>",
+      "study_root_reference": "<instance-relative-study-root>",
+      "membership_status": "proposed",
+      "relationship_summary": "<how this independent Study relates to the Program>"
+    }
+  ],
+  "shared_material_references": [],
+  "boundary_declarations": {
+    "does_not_merge_studies": true,
+    "does_not_transfer_authority": true,
+    "does_not_grant_access": true
+  },
+  "human_review": {
+    "status": "proposed",
+    "reviewed_at": "<YYYY-MM-DD>",
+    "review_reference": "<accountable-human review reference>"
+  }
+}
