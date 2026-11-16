@@ -1,6 +1,6 @@
 # Reference Workspace Tree
 
-Status: `v0.5.0` candidate reference layout. This document describes stable locations
+Status: `v0.6.0` candidate reference layout. This document describes stable locations
 and ownership boundaries; it is not an installer and does not make any
 directory mandatory merely by naming it.
 
@@ -60,6 +60,10 @@ safely between services.
   Github/                                         [bootstrap default]
     <repository-worktree>/                        [only for a reviewed public worktree]
   Ops/                                            [bootstrap default]
+    workspace_hygiene/                            [optional caller-approved private audit records]
+      placement_audit_scope.json                  [named read-only scope]
+      reports/<audit-id>.json                     [private operational report]
+      remediation_queues/<audit-id>.json          [human-reviewed proposals only]
     ...machine-local operational material as configured...
   Archive/                                        [bootstrap default]
     ...retained historical material as configured...

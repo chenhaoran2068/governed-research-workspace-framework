@@ -1,0 +1,24 @@
+{
+  "record_type": "workspace_placement_audit_scope",
+  "scope_schema_version": "1.0.0",
+  "workspace_root": "<absolute-workspace-root>",
+  "workspace_manifest_path": "WORKSPACE_MANIFEST.yaml",
+  "audit_mode": "read_only",
+  "included_root_keys": ["systems", "skills", "shared", "knowledge", "methods", "instances", "data_raw", "github", "ops", "archive"],
+  "root_review_overrides": [
+    {"root_key": "ops", "inspection_depth": "recursive_metadata"},
+    {"root_key": "data_raw", "inspection_depth": "root_only"},
+    {"root_key": "github", "inspection_depth": "root_only"}
+  ],
+  "known_ephemeral_paths": [
+    {
+      "path": "Ops/workspace_hygiene",
+      "owner": "Framework workspace-placement-integrity audit",
+      "regeneration_basis": "Audit reports and queues are operational records recreated from a caller-named scope."
+    }
+  ],
+  "placement_receipt_paths": [],
+  "excluded_relative_paths": [],
+  "generated_directory_names": ["__pycache__", ".pytest_cache", ".mypy_cache"],
+  "report_root": "Ops/workspace_hygiene/reports"
+}

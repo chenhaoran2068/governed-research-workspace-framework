@@ -53,6 +53,16 @@ not change the workspace-manifest schema, move existing Study roots, rename
 existing `project_id` fields, or require a Program registry. Existing
 workspaces remain valid without action.
 
+## v0.6.0 Workspace Placement-Integrity Audit Compatibility
+
+Framework v0.6.0 adds optional standalone schemas, blank templates, a
+caller-named read-only placement auditor, and synthetic fixtures. It leaves
+workspace-manifest schema version `1` unchanged: an existing workspace gains
+no new required field, root, directory, scheduled task, scan, report, or
+cleanup behavior. The optional scope record is private operational material
+below a caller-chosen `Ops/` location. Existing material is never moved,
+renamed, archived, or deleted by the Framework.
+
 ## Release Discipline
 
 Candidate branches, released tags, and local private variants are distinct.

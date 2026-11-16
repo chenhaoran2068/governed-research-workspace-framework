@@ -2,6 +2,15 @@
 
 This roadmap records review sequence, not delivery dates or promises.
 
+## v0.6.0 Workspace Placement-Integrity Audit
+
+This candidate adds an optional, caller-named metadata-only audit of manifest
+declared workspace roots. It introduces a separate scope record, structured
+report, placement receipt, and remediation-queue schema, plus a read-only
+auditor and synthetic tests. It does not change manifest schema v1, inspect
+source content, traverse links/reparse points or nested Git worktrees, create
+a schedule, or execute cleanup, migration, archiving, deletion, or repair.
+
 ## v0.4.0 Controlled Reference-Manager Library
 
 This release adds an opt-in version-2 knowledge-service manifest for one

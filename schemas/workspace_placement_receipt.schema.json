@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/workspace_placement_receipt.schema.json",
+  "title": "Workspace Placement Receipt",
+  "type": "object",
+  "required": ["record_type", "receipt_schema_version", "operation_id", "declared_owner_root_key", "target_root", "written_relative_paths", "ephemeral_outputs", "repair_relations", "human_reference"],
+  "properties": {
+    "record_type": {"const": "workspace_placement_receipt"},
+    "receipt_schema_version": {"const": "1.0.0"},
+    "operation_id": {"type": "string", "minLength": 1},
+    "declared_owner_root_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+    "target_root": {"type": "string", "minLength": 1},
+    "written_relative_paths": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true},
+    "ephemeral_outputs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "repair_relations": {"type": "array", "items": {"$ref": "#/$defs/repairRelation"}, "uniqueItems": true},
+    "human_reference": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "repairRelation": {
+      "type": "object",
+      "required": ["mistaken_relative_path", "corrected_relative_path", "source_disposition"],
+      "properties": {
+        "mistaken_relative_path": {"type": "string", "minLength": 1},
+        "corrected_relative_path": {"type": "string", "minLength": 1},
+        "source_disposition": {"enum": ["retained_pending_human_review", "removed_after_approval"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

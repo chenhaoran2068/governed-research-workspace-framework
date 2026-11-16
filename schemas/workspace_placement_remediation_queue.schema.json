@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/workspace_placement_remediation_queue.schema.json",
+  "title": "Workspace Placement Remediation Queue",
+  "type": "object",
+  "required": ["record_type", "queue_schema_version", "audit_id", "items", "automatic_execution"],
+  "properties": {
+    "record_type": {"const": "workspace_placement_remediation_queue"},
+    "queue_schema_version": {"const": "1.0.0"},
+    "audit_id": {"type": "string", "minLength": 1},
+    "items": {"type": "array", "items": {"$ref": "#/$defs/item"}},
+    "automatic_execution": {"const": false}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "item": {
+      "type": "object",
+      "required": ["item_id", "source_relative_path", "proposed_action", "status", "reason"],
+      "properties": {
+        "item_id": {"type": "string", "minLength": 1},
+        "source_relative_path": {"type": "string", "minLength": 1},
+        "proposed_destination_relative_path": {"type": ["string", "null"]},
+        "proposed_action": {"enum": ["retain", "register", "archive", "move", "delete", "human_decision_required"]},
+        "status": {"enum": ["proposed", "approved", "rejected", "executed", "blocked"]},
+        "reason": {"type": "string", "minLength": 1},
+        "approval_reference": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

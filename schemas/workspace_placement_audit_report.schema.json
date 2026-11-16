@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/workspace_placement_audit_report.schema.json",
+  "title": "Workspace Placement Integrity Audit Report",
+  "type": "object",
+  "required": [
+    "record_type",
+    "report_schema_version",
+    "audit_id",
+    "created_at",
+    "audit_mode",
+    "workspace_root",
+    "scope_path",
+    "manifest_path",
+    "summary",
+    "records",
+    "execution_boundary"
+  ],
+  "properties": {
+    "record_type": {"const": "workspace_placement_audit_report"},
+    "report_schema_version": {"const": "1.0.0"},
+    "audit_id": {"type": "string", "pattern": "^workspace-placement-audit-[a-f0-9]{24}$"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "audit_mode": {"const": "read_only"},
+    "workspace_root": {"type": "string", "minLength": 1},
+    "scope_path": {"type": "string", "minLength": 1},
+    "manifest_path": {"type": "string", "minLength": 1},
+    "report_write_approval_reference": {"type": "string", "minLength": 1},
+    "summary": {
+      "type": "object",
+      "required": ["record_count", "status_counts"],
+      "properties": {
+        "record_count": {"type": "integer", "minimum": 0},
+        "status_counts": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        }
+      },
+      "additionalProperties": false
+    },
+    "records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/record"}
+    },
+    "execution_boundary": {
+      "type": "object",
+      "required": ["modified_audited_material", "report_written", "automatic_cleanup", "automatic_move", "automatic_delete"],
+      "properties": {
+        "modified_audited_material": {"const": false},
+        "report_written": {"type": "boolean"},
+        "automatic_cleanup": {"const": false},
+        "automatic_move": {"const": false},
+        "automatic_delete": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "record": {
+      "type": "object",
+      "required": ["status", "relative_path", "evidence", "recommended_action"],
+      "properties": {
+        "status": {
+          "enum": [
+            "conforms",
+            "declared_absent",
+            "registered_path_missing",
+            "candidate_empty_directory",
+            "known_generated_outside_declared_zone",
+            "possible_repair_residue",
+            "unattributed_path",
+            "not_assessed",
+            "refused_reparse_point"
+          ]
+        },
+        "relative_path": {"type": "string", "minLength": 1},
+        "root_key": {"type": ["string", "null"]},
+        "evidence": {"type": "string", "minLength": 1},
+        "recommended_action": {
+          "enum": ["retain", "register_or_explain", "review_for_cleanup", "human_decision_required", "do_not_traverse"]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

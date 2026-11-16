@@ -1,7 +1,7 @@
 # Governed Research Workspace Framework
 
-Status: v0.5.0 Research Program registry candidate source, derived from the
-public v0.4.0 baseline. Determine the current published version from its exact
+Status: v0.6.0 workspace placement-integrity audit candidate source, derived
+from the public v0.5.0 baseline. Determine the current published version from its exact
 GitHub Release and associated tag; do not infer it from this branch or a
 retained candidate record. The Windows, Ubuntu, and macOS CI matrix results
 belong to their exact verified release evidence.
@@ -64,6 +64,7 @@ See:
 - [controlled workspace bootstrap design](docs/controlled_workspace_bootstrap_design_v1.md)
 - [multi-system contract](docs/multi_system_contract.md)
 - [research-program registry contract](docs/research_program_registry_contract_v1.md)
+- [workspace placement-integrity audit contract](docs/workspace_placement_integrity_audit_contract_v1.md)
 - [knowledge-service contract v1](docs/knowledge_service_contract_v1.md)
 - [controlled reference-manager library contract](docs/controlled_reference_manager_library_contract_v1.md)
 - [installation profiles](docs/installation_profiles.md)
@@ -112,6 +113,12 @@ The v0.5.0 candidate adds an optional Research Program index for relating
 independent Study Instances within an already declared instance registry. It
 does not move Study roots, alter existing Study-level `project_id` records,
 create a Program, or transfer material access or authority.
+
+The v0.6.0 candidate adds an optional, caller-named, metadata-only placement
+audit for Framework-declared workspace roots. It uses a separate operational
+scope record under `Ops/` rather than changing workspace-manifest schema v1.
+It reports limited structural findings only; it does not scan source content,
+move, archive, delete, rename, register, or repair workspace material.
 
 The bootstrap helper is no-write by default. It creates a framework root only
 after a reviewed preview, an exact plan ID, and an accountable approval

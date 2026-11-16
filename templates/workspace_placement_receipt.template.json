@@ -1,0 +1,11 @@
+{
+  "record_type": "workspace_placement_receipt",
+  "receipt_schema_version": "1.0.0",
+  "operation_id": "<operation-id>",
+  "declared_owner_root_key": "<manifest-root-key>",
+  "target_root": "<workspace-relative-owner-root>",
+  "written_relative_paths": ["<workspace-relative-path>"],
+  "ephemeral_outputs": [],
+  "repair_relations": [],
+  "human_reference": "<task-or-approval-reference>"
+}

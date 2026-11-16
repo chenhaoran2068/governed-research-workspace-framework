@@ -18,7 +18,7 @@ grants and are not required to contain every possible system module.
 | `Instances/` | Real Study and Research Program workspaces, including an optional instance-local Program registry. | Cross-Study authority or public release source. |
 | `Data_Raw/` | Retained source-data holdings. | Analysis-ready project data, result authority, or public-release approval. |
 | `Github/` | Local worktrees for public repositories and release surfaces. | Private workspace authority. |
-| `Ops/` | Caches, temporary operations, and machine support. | Durable research knowledge or project authority. |
+| `Ops/` | Caches, temporary operations, machine support, and caller-approved private operational records such as read-only placement-audit scopes and reports. | Durable research knowledge or project authority. |
 | `Archive/` | Retained historical material. | Current authority unless explicitly designated. |
 
 ## Placement Rules
@@ -41,6 +41,9 @@ grants and are not required to contain every possible system module.
    copied into a project by this Framework.
 9. A Research Program index may relate independent Studies, but does not move
    them, merge them, or transfer access or authority between them.
+10. A placement-integrity audit may report root-placement residue from a
+    caller-named scope, but never turns an empty, generated, unknown, or
+    historical path into an automatic deletion or migration target.
 
 The [reference workspace tree](reference_workspace_tree.md) defines the
 cross-system second-level placement points. Concrete systems and projects own
