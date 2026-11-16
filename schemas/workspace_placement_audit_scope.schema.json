@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/governed-research-workspace-framework/schemas/workspace_placement_audit_scope.schema.json",
+  "title": "Workspace Placement Integrity Audit Scope",
+  "type": "object",
+  "required": [
+    "record_type",
+    "scope_schema_version",
+    "workspace_root",
+    "workspace_manifest_path",
+    "audit_mode",
+    "included_root_keys",
+    "report_root"
+  ],
+  "properties": {
+    "record_type": {"const": "workspace_placement_audit_scope"},
+    "scope_schema_version": {"const": "1.0.0"},
+    "workspace_root": {"type": "string", "minLength": 1},
+    "workspace_manifest_path": {"$ref": "#/$defs/safeRelativePath"},
+    "audit_mode": {"const": "read_only"},
+    "included_root_keys": {
+      "type": "array",
+      "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "root_review_overrides": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/rootReviewOverride"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "known_ephemeral_paths": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/ephemeralPath"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "placement_receipt_paths": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/safeRelativePath"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "excluded_relative_paths": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/safeRelativePath"},
+      "uniqueItems": true,
+      "default": []
+    },
+    "generated_directory_names": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1, "maxLength": 80},
+      "uniqueItems": true,
+      "default": ["__pycache__", ".pytest_cache", ".mypy_cache"]
+    },
+    "report_root": {"$ref": "#/$defs/safeRelativePath"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "safeRelativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![A-Za-z]:[\\\\/])(?![\\\\/])(?!.*(?:^|[\\\\/])\\.\\.(?:[\\\\/]|$)).+"
+    },
+    "rootReviewOverride": {
+      "type": "object",
+      "required": ["root_key", "inspection_depth"],
+      "properties": {
+        "root_key": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "inspection_depth": {"enum": ["root_only", "recursive_metadata"]}
+      },
+      "additionalProperties": false
+    },
+    "ephemeralPath": {
+      "type": "object",
+      "required": ["path", "owner", "regeneration_basis"],
+      "properties": {
+        "path": {"$ref": "#/$defs/safeRelativePath"},
+        "owner": {"type": "string", "minLength": 1},
+        "regeneration_basis": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    }
+  }
+}

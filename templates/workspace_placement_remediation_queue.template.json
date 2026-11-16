@@ -1,0 +1,7 @@
+{
+  "record_type": "workspace_placement_remediation_queue",
+  "queue_schema_version": "1.0.0",
+  "audit_id": "<workspace-placement-audit-id>",
+  "items": [],
+  "automatic_execution": false
+}

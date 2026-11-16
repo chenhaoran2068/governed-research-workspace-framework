@@ -41,6 +41,7 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/controlled_workspace_bootstrap_design_v1.md",
             "docs/multi_system_contract.md",
             "docs/research_program_registry_contract_v1.md",
+            "docs/workspace_placement_integrity_audit_contract_v1.md",
             "docs/knowledge_service_contract_v1.md",
             "docs/controlled_reference_manager_library_contract_v1.md",
             "docs/installation_profiles.md",
@@ -63,16 +64,24 @@ class FrameworkContractTests(unittest.TestCase):
             "schemas/project_system_binding.schema.json",
             "schemas/research_program_index.schema.json",
             "schemas/knowledge_service_manifest.schema.json",
+            "schemas/workspace_placement_audit_scope.schema.json",
+            "schemas/workspace_placement_audit_report.schema.json",
+            "schemas/workspace_placement_receipt.schema.json",
+            "schemas/workspace_placement_remediation_queue.schema.json",
             "templates/workspace_manifest.template.yaml",
             "templates/workspace_manifest.standalone.template.yaml",
             "templates/workspace_manifest.framework_integrated.template.yaml",
             "templates/workspace_bootstrap_readme.template.md",
             "scripts/bootstrap_workspace.py",
             "scripts/validate_knowledge_service_manifest.py",
+            "scripts/audit_workspace_placement.py",
             "templates/system_manifest.template.yaml",
             "templates/project_system_binding.template.yaml",
             "templates/research_program_index.template.json",
             "templates/knowledge_service_manifest.template.yaml",
+            "templates/workspace_placement_audit_scope.template.json",
+            "templates/workspace_placement_receipt.template.json",
+            "templates/workspace_placement_remediation_queue.template.json",
             "examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml",
             "examples/synthetic_multi_system_workspace/Knowledge/synthetic-reading-knowledge/KNOWLEDGE_SERVICE_MANIFEST.yaml",
             "examples/synthetic_multi_system_workspace/Knowledge/synthetic-managed-reference-library/KNOWLEDGE_SERVICE_MANIFEST.yaml",
@@ -88,6 +97,9 @@ class FrameworkContractTests(unittest.TestCase):
             "docs/release/V0_5_0_RELEASE_GATE.md",
             "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.5.0.md",
             "docs/release/RELEASE_NOTES_v0.5.0.md",
+            "docs/release/V0_6_0_RELEASE_GATE.md",
+            "docs/release/PUBLIC_MATERIAL_RIGHTS_REVIEW_v0.6.0.md",
+            "docs/release/RELEASE_NOTES_v0.6.0.md",
         ]
         missing = [path for path in required if not (ROOT / path).is_file()]
         self.assertEqual(missing, [])
@@ -162,7 +174,7 @@ class FrameworkContractTests(unittest.TestCase):
 
     def test_synthetic_registered_systems_cover_the_v0_4_workspace_example(self):
         workspace = self._load_yaml("examples/synthetic_multi_system_workspace/WORKSPACE_MANIFEST.yaml")
-        self.assertEqual(workspace["framework_version"], "0.5.0")
+        self.assertEqual(workspace["framework_version"], "0.6.0")
         for path in [
             "examples/synthetic_multi_system_workspace/Systems/example-research-system/SYSTEM_MANIFEST.yaml",
             "examples/synthetic_multi_system_workspace/Systems/example-method-system/SYSTEM_MANIFEST.yaml",
@@ -170,7 +182,7 @@ class FrameworkContractTests(unittest.TestCase):
             system = self._load_yaml(path)
             self.assertEqual(
                 system["framework_compatibility"]["supported_framework_versions"],
-                ">=0.1.0 <0.6.0",
+                ">=0.1.0 <0.7.0",
             )
 
     def test_synthetic_knowledge_service_requires_explicit_consumer_matching(self):
@@ -308,13 +320,14 @@ class FrameworkContractTests(unittest.TestCase):
         script = (ROOT / "scripts/bootstrap_workspace.py").read_text(encoding="utf-8")
         versioning = (ROOT / "docs/versioning_and_compatibility.md").read_text(encoding="utf-8")
         evidence = (ROOT / "docs/release/V0_1_1_RELEASE_EVIDENCE.md").read_text(encoding="utf-8")
-        self.assertIn('TOOL_VERSION = "0.5.0"', script)
-        self.assertIn('FRAMEWORK_VERSION = "0.5.0"', script)
+        self.assertIn('TOOL_VERSION = "0.6.0"', script)
+        self.assertIn('FRAMEWORK_VERSION = "0.6.0"', script)
         self.assertNotIn("0.1.0-framework-candidate", script)
         self.assertIn("immutable public contract by policy", versioning)
         self.assertIn("## v0.3.0 Knowledge-Service Compatibility", versioning)
         self.assertIn("## v0.4.0 Controlled Reference-Manager Compatibility", versioning)
         self.assertIn("## v0.5.0 Research Program Registry Compatibility", versioning)
+        self.assertIn("## v0.6.0 Workspace Placement-Integrity Audit Compatibility", versioning)
         self.assertIn("R11-G6", evidence)
         self.assertIn("R11-G7", evidence)
 
